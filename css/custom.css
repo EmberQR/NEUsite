@@ -1,0 +1,78 @@
+.single-container {
+  display: flex;
+}
+
+.post-title {
+  margin-bottom: 20px; /* 调整此值以增加标题与下面小字之间的行距 */
+}
+
+.post-meta {
+  margin-top: 10px; /* 可选：调整小字与上面标题之间的间距 */
+  line-height: 1.6; /* 可选：调整小字的行间距 */
+}
+
+
+.sidebar {
+  width: 16%; /* 调整此值以使目录变窄 */
+  position: fixed;
+  top: 100px; /* 根据需要调整此值 */
+  left: 10px; /* 根据需要调整此值 */
+  max-height: 80vh; /* 根据需要调整此值 */
+  overflow-y: auto;
+  padding: 0; /* 移除内边距 */
+  background-color: transparent; /* 取消背景色 */
+  border-radius: 5px;
+  box-shadow: none; /* 取消阴影 */
+}
+
+
+
+.toc {
+  padding: 10px;
+  list-style: none; /* 取消列表标识 */
+  font-size: 14px; /* 设置基本字体大小 */
+  font-family: Arial, sans-serif; /* 设置目录的字体 */
+  background-color: #f8f8f8; /* 设置目录的背景色 */
+  border-radius: 5px; /* 添加圆角 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影使其更明显 */
+}
+
+.toc h2 {
+  font-size: 20px; /* 调整目录标题的字体大小 */
+  line-height: 2;
+  text-align: center; /* 居中对齐 */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* 设置目录标题的字体 */
+}
+
+.toc ol, .toc ul {
+  list-style: none; /* 取消嵌套列表的标识 */
+  padding-left: 5px; /* 移除左侧内边距 */
+  margin-left: 0; /* 移除左侧外边距 */
+  line-height: 1.99;
+}
+
+.toc ol > li {
+  margin-left: 0; /* 一级目录无缩进 */
+  font-size: 16px; /* 一级目录字体大小 */
+}
+
+.toc ol > li > ol > li {
+  margin-left: 20px; /* 二级目录缩进 */
+  font-size: 14px; /* 二级目录字体大小 */
+}
+
+.toc ol > li > ol > li > ol > li {
+  margin-left: 40px; /* 三级目录缩进 */
+  font-size: 12px; /* 三级目录字体大小 */
+}
+
+.toc ol > li > ol > li > ol > li > ol > li {
+  margin-left: 60px; /* 四级目录缩进 */
+  font-size: 10px; /* 四级目录字体大小 */
+}
+
+.post-content {
+  width: 100%; /* 根据侧边栏宽度调整此值 */
+  margin-left: 0%; /* 根据侧边栏宽度调整此值 */
+  padding-left: 0px; /* 可选：为内容添加一些内边距 */
+}
