@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>选修课评分 on NEU小站</title>
-    <link>https://xn--xhq44jb2fzpc.com/ratings/</link>
+    <link>http://localhost:1313/ratings/</link>
     <description>Recent content in 选修课评分 on NEU小站</description>
     <generator>Hugo -- 0.127.0</generator>
     <language>zh-cn</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://xn--xhq44jb2fzpc.com/ratings/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ratings/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
