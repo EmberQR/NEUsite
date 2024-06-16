@@ -76,3 +76,37 @@
   margin-left: 0%; /* 根据侧边栏宽度调整此值 */
   padding-left: 0px; /* 可选：为内容添加一些内边距 */
 }
+
+/* 样式文件 */
+#ember-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#qr-code {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#qr-code img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+#ember-container:hover #qr-code,
+#ember-container:focus #qr-code {
+  opacity: 1;
+  visibility: visible;
+}

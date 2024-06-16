@@ -12,7 +12,8 @@
 <meta name="keywords" content="">
 <meta name="description" content="点击 此处下载选修课榜单 分类版 ver20230811.2220.xlsx。
 点击 此处进入虎扑评分选修课榜单。
-在评论区交流有关选修课的一切。">
+在评论区交流有关选修课的一切。评论区支持markdown语法。
+请注意：评论区评论只能由网站管理员删除，请勿进行攻击性评论，多次违规者网站将永久禁止访问！">
 <meta name="author" content="">
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/ratings/">
 
@@ -188,10 +189,11 @@
  进入虎扑评分选修课榜单。</p>
 </li>
 <li>
-<p>在评论区交流有关选修课的一切。</p>
+<p>在评论区交流有关选修课的一切。评论区支持<code>markdown</code>语法。</p>
 </li>
 </ul>
 <hr>
+<p>请注意：评论区评论只能由网站管理员删除，请勿进行攻击性评论，多次违规者网站将永久禁止访问！</p>
 
 <div id="vcomments"></div>
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -213,8 +215,11 @@
 <footer class="footer">
         <span>&copy; 2024 <a href="https://xn--xhq44jb2fzpc.com/">NEU小站</a></span> · 
 
-    <span>
-        <a href="https://github.com/EmberQR/" rel="noopener noreferrer" target="_blank">Ember</a>
+    <span id="ember-container">
+        Ember
+        <div id="qr-code" class="hidden">
+            <img src="qrcode/ember.png" alt="联系网站管理员" />
+        </div>
     </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
@@ -248,6 +253,18 @@
             } else {
                 history.pushState(null, null, `#${id}`);
             }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var emberContainer = document.getElementById('ember-container');
+        emberContainer.addEventListener('mouseenter', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.remove('hidden');
+        });
+        emberContainer.addEventListener('mouseleave', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.add('hidden');
         });
     });
 

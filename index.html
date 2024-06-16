@@ -190,8 +190,11 @@
 <footer class="footer">
         <span>&copy; 2024 <a href="https://xn--xhq44jb2fzpc.com/">NEU小站</a></span> · 
 
-    <span>
-        <a href="https://github.com/EmberQR/" rel="noopener noreferrer" target="_blank">Ember</a>
+    <span id="ember-container">
+        Ember
+        <div id="qr-code" class="hidden">
+            <img src="qrcode/ember.png" alt="联系网站管理员" />
+        </div>
     </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
@@ -225,6 +228,18 @@
             } else {
                 history.pushState(null, null, `#${id}`);
             }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var emberContainer = document.getElementById('ember-container');
+        emberContainer.addEventListener('mouseenter', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.remove('hidden');
+        });
+        emberContainer.addEventListener('mouseleave', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.add('hidden');
         });
     });
 
