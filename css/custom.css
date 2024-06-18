@@ -77,6 +77,27 @@
   padding-left: 0px; /* 可选：为内容添加一些内边距 */
 }
 
+/* 主题的CSS文件，例如 styles.css */
+.post-author {
+  font-weight: bold;
+  color: blue;
+  font-size: 1.2em;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.verified-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.verified-svg {
+  width: 16px;
+  height: 16px;
+}
+
+
 /* 样式文件 */
 
 
