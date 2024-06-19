@@ -180,17 +180,141 @@
 
 <div class="post-content">
   
-  <h2 id="-欢迎访问neu小站">🤗 欢迎访问NEU小站！<a hidden class="anchor" aria-hidden="true" href="#-欢迎访问neu小站">#</a></h2>
-<hr>
-<h3 id="这是什么网站">这是什么网站？<a hidden class="anchor" aria-hidden="true" href="#这是什么网站">#</a></h3>
-<p><strong>NEU 小站</strong>由东北大学的学生开发和维护，旨在为大家提供丰富的学习资源和实用的工具，助您在学业和生活中更加得心应手。</p>
-<h3 id="我们的特色">我们的特色<a hidden class="anchor" aria-hidden="true" href="#我们的特色">#</a></h3>
-<p>🌐 <strong><a href="/rapidlinks/%E5%BF%AB%E9%80%9F%E9%93%BE%E6%8E%A5/">快速链接</a></strong>：直达有用的工具！</p>
-<p>📚 <strong><a href="/resources">资源共享</a></strong>：获取丰富的学习资料。您也是分享者，可以投稿任何资源。</p>
-<p>更多功能还在开发中。请点击 <a href="https://f.wps.cn/ksform/w/write/QuaZnovL" target="_blank">此处</a>
-反馈您的宝贵建议！</p>
-<h3 id="我们的目标">我们的目标<a hidden class="anchor" aria-hidden="true" href="#我们的目标">#</a></h3>
-<p>我们希望通过 <strong>NEU 小站</strong>，构建一个互助互爱的校园社区，让每位同学都能找到自己需要的资源和支持，提升学习效率，享受愉快的校园生活。</p>
+  <div class="container">
+    <div class="top-row">
+        <div class="text-container first">
+            <h1>🤗 欢迎访问</h1>
+            <h2>NEU小站</h2>
+        </div>
+        <img src="icons/HDlogo.png" alt="NEU小站 LOGO" class="logo-image">
+    </div>
+    <div class="text-container">
+        <h1>这是什么网站？</h1>
+        <p><strong>NEU 小站</strong>由东北大学的学生开发和维护，旨在为大家提供丰富的学习资源和实用的工具，助您在学业和生活中更加得心应手。</p>
+    </div>
+    <div class="text-container">
+        <h3>🌐 快速链接 <a href="/rapidLinks/快速链接/" class="my-button">前往</a></h3>
+        <p>直达有用的工具！</p>
+    </div>
+    <div class="text-container">
+        <h3>📚 资源共享 <a href="/resources/" class="my-button">前往</a></h3>
+        <p>获取丰富的学习资料。您也是分享者，可以投稿任何资源。</p>
+    </div>
+    <div class="text-container centered-text">
+        <p>更多功能正在开发中，敬请期待……</p>
+    </div>
+</div>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: rgba(245, 245, 245, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 98%;
+        height: auto; /* 自动适应内容高度 */
+    }
+    .top-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .text-container {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: calc(100% - 40px); /* 留出左右各20px的间距 */
+        height: auto; /* 自动适应内容高度 */
+    }
+    .text-container.first {
+        margin-left: -3px;
+        width: calc(100% - 200px); /* 总宽度减去图片容器宽度和间距 */
+        margin-right: 15px; /* 右侧间距 */
+        text-align: center;
+        
+    }
+    .logo-image {
+        margin-right: 20px;
+        max-width: 145px; /* 图片的最大宽度 */
+        height: auto;
+        border-radius: 15px;
+        /* box-shadow: 0 0px 8px rgba(236, 227, 207); */
+        position: relative;
+        top: -9px;
+    }
+    .text-container h1 {
+        margin: 0;
+        font-size: 32px;
+        margin-bottom: 12px; /* 增加h1的下边距 */
+    }
+    .text-container h2 {
+        margin: 0;
+        font-size: 54px;
+        font-weight: bold;
+    }
+    .text-container h3 {
+    margin-top: 0px; /* Adjust this value as needed to reduce the space */
+    font-size: 28px; /* Example font size, adjust as needed */
+    }
+
+    .text-container p {
+        margin: 0;
+        font-size: 18px;
+    }
+    .my-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        padding: 0;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+        width: 70px;
+        height: 40px;
+        font-size: 20px;
+        position: relative;
+        top: -2px;
+    }
+    .my-button:hover {
+        background-color: #0056b3;
+    }
+    .my-button:active {
+        background-color: #003d80;
+    }
+    /* 暗黑模式样式 */
+    .dark .container,
+    .dark .text-container {
+        background-color: #333;
+        color: white;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    }
+    .dark .logo-image {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    }
+    .dark .my-button {
+        background-color: #73767a;
+        color: white;
+        box-shadow: 0 4px 8px #73767a; /* Darker shadow in dark mode */
+    }
+    .dark .my-button:hover {
+        background-color: #161b21;
+    }
+    .dark .my-button:active {
+        background-color: #020203;
+    }
+    .centered-text {
+        text-align: center;
+    }
+    /* 让特定容器的文本居中 */
+</style>
 
 
   
