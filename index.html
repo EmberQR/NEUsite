@@ -236,7 +236,6 @@
         width: calc(100% - 200px); /* 总宽度减去图片容器宽度和间距 */
         margin-right: 15px; /* 右侧间距 */
         text-align: center;
-        
     }
     .logo-image {
         margin-right: 20px;
@@ -258,8 +257,10 @@
         font-weight: bold;
     }
     .text-container h3 {
-    margin-top: 0px; /* Adjust this value as needed to reduce the space */
-    font-size: 28px; /* Example font size, adjust as needed */
+        margin-top: 0px; /* 调整此值以减少空间 */
+        font-size: 28px; /* 示例字体大小，根据需要调整 */
+        display: flex;
+        align-items: center;
     }
 
     .text-container p {
@@ -302,7 +303,7 @@
     .dark .my-button {
         background-color: #73767a;
         color: white;
-        box-shadow: 0 4px 8px #73767a; /* Darker shadow in dark mode */
+        box-shadow: 0 4px 8px #73767a; /* 暗黑模式下的更暗阴影 */
     }
     .dark .my-button:hover {
         background-color: #161b21;
@@ -313,7 +314,11 @@
     .centered-text {
         text-align: center;
     }
-    /* 让特定容器的文本居中 */
+    @media (max-width: 768px) {
+        .logo-image {
+            display: none;
+        }
+    }
 </style>
 
 
