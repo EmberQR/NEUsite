@@ -186,7 +186,12 @@
             <h1>🤗 欢迎访问</h1>
             <h2>NEU小站</h2>
         </div>
-        <img src="icons/HDlogo.png" alt="NEU小站 LOGO" class="logo-image">
+        <div class="image-container">
+            <img src="icons/neucartoon.png" alt="NEU小站 LOGO" class="logo-image">
+            <div class="overlay">
+            本站已获得图片作者授权。<br>作者：<a href="https://www.zhihu.com/people/tou-ming-skjun" target="_blank" class="author-link">大连七院贵宾一位</a>
+            </div>
+        </div>
     </div>
     <div class="text-container">
         <h1>这是什么网站？</h1>
@@ -242,7 +247,6 @@
         max-width: 145px; /* 图片的最大宽度 */
         height: auto;
         border-radius: 15px;
-        /* box-shadow: 0 0px 8px rgba(236, 227, 207); */
         position: relative;
         top: -9px;
     }
@@ -323,6 +327,39 @@
             margin-left: 0;
             margin-right: 0;
         }
+    }
+
+    /* 新增的样式 */
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        text-align: center;
+        padding: 6px;
+        opacity: 0;
+        transition: opacity 0.5s;
+        font-size: 11px;
+    }
+
+    .image-container:hover .overlay, .image-container:active .overlay {
+        opacity: 1;
+    }
+
+    .author-link {
+        color: #ff6347;
+        text-decoration: none;
+    }
+
+    .author-link:hover {
+        /* text-decoration: underline; */
     }
 </style>
 

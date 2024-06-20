@@ -158,10 +158,21 @@
 <main class="main">
 <div class="not-found">
     <div class="main-text">404</div>
-    <div class="sub-text">
-        你找不到这个页面<br>就像你再也找不到那个人😿
-    </div>
+    <div class="sub-text" id="subText"></div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messages = [
+            "你找不到这个页面<br>就像你再也找不到那个人😿",
+            "页面消失了<br>就像你爱的人突然离开了😿",
+            "页面走丢了<br>别把爱你的人也丢了😿",
+            "找不到这个页面<br>就像你找不到TA的心😿",
+        ];
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById('subText').innerHTML = randomMessage;
+    });
+</script>
     </main>
     
 <footer class="footer">
