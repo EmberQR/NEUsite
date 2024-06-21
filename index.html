@@ -172,15 +172,7 @@
 </header>
 
 <main class="main">
-
-
-
-
-
-
-<div class="post-content">
-  
-  <div class="container">
+<div class="container">
     <div class="top-row">
         <div class="text-container first">
             <h1>🤗 欢迎访问</h1>
@@ -209,17 +201,56 @@
         <p>更多功能正在开发中，敬请期待……</p>
     </div>
 </div>
+
 <style>
+    body {
+        position: relative;
+        overflow: hidden;  
+        margin: 0;  
+        height: 100%;  
+    }
+
+    body::before {
+        content: "";  
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('/icons/bg_l.jpeg') no-repeat center center;  
+        background-size: cover;  
+        opacity: 0.9;  
+        z-index: -1;  
+    }
+
+    body.dark::before {
+    background: #01010186;
+    }
+
+    
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        background-color: rgba(245, 245, 245, 0.9);
+        position: relative;  
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         width: 98%;
-        height: auto; /* 自动适应内容高度 */
+        height: auto;  
+        overflow: hidden;  
+    }
+
+    .container::before {
+        content: "";  
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(245, 245, 245, 0.3);  
+        border-radius: 15px;  
+        z-index: -1;  
     }
     .top-row {
         display: flex;
@@ -227,24 +258,45 @@
         align-items: center;
         width: 100%;
     }
+     
     .text-container {
         margin-bottom: 20px;
         padding: 20px;
-        background-color: white;
+        position: relative;  
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: calc(100% - 40px); /* 留出左右各20px的间距 */
-        height: auto; /* 自动适应内容高度 */
+        width: calc(100% - 40px);  
+        height: auto;  
+        overflow: hidden;  
+        margin-right: 23px;
     }
+
+    .text-container::before {
+        content: "";  
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);  
+        border-radius: 15px;  
+        z-index: -1;  
+    }
+
+     
     .text-container.first {
         margin-left: -3px;
-        width: calc(100% - 200px); /* 总宽度减去图片容器宽度和间距 */
-        margin-right: 15px; /* 右侧间距 */
+        width: calc(100% - 200px);  
+        margin-right: 15px;  
         text-align: center;
+    }
+
+    .text-container.first::before {
+        background-color: rgba(255, 255, 255, 0.7);  
     }
     .logo-image {
         margin-right: 20px;
-        max-width: 145px; /* 图片的最大宽度 */
+        max-width: 145px;  
         height: auto;
         border-radius: 15px;
         position: relative;
@@ -253,7 +305,7 @@
     .text-container h1 {
         margin: 0;
         font-size: 32px;
-        margin-bottom: 12px; /* 增加h1的下边距 */
+        margin-bottom: 12px;  
     }
     .text-container h2 {
         margin: 0;
@@ -261,8 +313,8 @@
         font-weight: bold;
     }
     .text-container h3 {
-        margin-top: 0px; /* 调整此值以减少空间 */
-        font-size: 28px; /* 示例字体大小，根据需要调整 */
+        margin-top: 0px;  
+        font-size: 28px;  
         display: flex;
         align-items: center;
     }
@@ -294,7 +346,7 @@
     .my-button:active {
         background-color: #003d80;
     }
-    /* 暗黑模式样式 */
+     
     .dark .container,
     .dark .text-container {
         background-color: #333;
@@ -307,7 +359,7 @@
     .dark .my-button {
         background-color: #73767a;
         color: white;
-        box-shadow: 0 4px 8px #73767a; /* 暗黑模式下的更暗阴影 */
+        box-shadow: 0 4px 8px #73767a;  
     }
     .dark .my-button:hover {
         background-color: #161b21;
@@ -329,7 +381,7 @@
         }
     }
 
-    /* 新增的样式 */
+     
     .image-container {
         position: relative;
         display: inline-block;
@@ -359,31 +411,9 @@
     }
 
     .author-link:hover {
-        /* text-decoration: underline; */
+         
     }
 </style>
-
-
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
