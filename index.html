@@ -194,7 +194,16 @@
         <h1>这是什么网站？</h1>
         <p><strong>NEU 小站</strong>由东北大学的学生开发和维护，旨在为大家提供丰富的学习资源和实用的工具，助您在学业和生活中更加得心应手。</p>
     </div>
-    <div class="text-container">
+    <div class="wrapper">
+        <div class="image-wrapper">
+            <img src="https://emberimg.oss-cn-beijing.aliyuncs.com/images/gaokao.jpg" alt="描述">
+        </div>
+        <div class="guide-text-container">
+            <h3>🎒 新生指南<a href="/freshman/" class="my-button">前往</a></h3>
+            <p>有24级萌新们可能想知道的各种问题~每个帖子下都设评论区供大家交流。</p>
+        </div>
+    </div>
+    <div class="text-container-beta">
         <h3>🎒 新生指南<a href="/freshman/" class="my-button">前往</a></h3>
         <p>有24级萌新们可能想知道的各种问题~每个帖子下都设评论区供大家交流。</p>
     </div>
@@ -270,8 +279,74 @@
             width: 100%;
         }
 
+        .wrapper {
+            position: relative;  
+            width: 98%;  
+            height: 164.39px;  
+            padding: 20px;  
+        }
+
+        .image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 12px;
+            padding: 0px;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+            width: calc(100% - 25px);  
+            height: 145px;  
+            overflow: hidden;  
+            z-index: 1;  
+            opacity: 0.85;  
+            transition: opacity 0.5s ease;  
+        }
+
+        .image-wrapper img {
+            width: 100%;   
+            height: 100%;  
+            object-fit: cover;  
+        }
+
+
+        .guide-text-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;  
+            border-radius: 15px;  
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+            width: calc(100% - 25px);  
+            height: auto;  
+            overflow: hidden;  
+            z-index: 1;  
+            opacity: 0;
+        }
+
+        .guide-text-container {
+            left: 100%;  
+        }
+
          
-        .text-container {
+        .guide-text-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: left 0.5s ease, opacity 0.5s ease;  
+            margin-left: 12px;
+        }
+
+         
+        .image-wrapper img {
+            width: 100%;  
+            height: auto;  
+            border-radius: 15px;  
+        }
+
+         
+        .text-container, .text-container-beta {
             margin-bottom: 20px;
             padding: 20px;
             position: relative;  
@@ -283,7 +358,7 @@
             text-align: center;  
         }
 
-        .text-container::before {
+        .text-container::before, .guide-text-container::before, .text-container-beta::before {
             content: "";  
             position: absolute;
             top: 0;
@@ -317,19 +392,23 @@
             top: -9px;
         }
 
-        .text-container h1 {
+        .text-container-beta {
+            display: none;
+        }
+
+        .text-container h1, .text-container-beta h1 {
             margin: 0;
             font-size: 32px;
             margin-bottom: 12px;  
         }
 
-        .text-container h2 {
+        .text-container h2, .text-container-beta h2 {
             margin: 0;
             font-size: 54px;
             font-weight: bold;
         }
 
-        .text-container h3 {
+        .text-container h3, .text-container-beta h3 {
             margin-top: 0px;  
             font-size: 28px;  
             display: flex;
@@ -338,7 +417,33 @@
             margin-bottom: 6px;
         }
 
-        .text-container p {
+        .text-container p, .text-container-beta p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .guide-text-container h1 {
+            margin: 0;
+            font-size: 32px;
+            margin-bottom: 12px;  
+        }
+
+        .guide-text-container h2 {
+            margin: 0;
+            font-size: 54px;
+            font-weight: bold;
+        }
+
+        .guide-text-container h3 {
+            margin-top: 0px;  
+            font-size: 28px;  
+            display: flex;
+            align-items: center;
+            justify-content: center;  
+            margin-bottom: 6px;
+        }
+
+        .guide-text-container p {
             margin: 0;
             font-size: 18px;
         }
@@ -371,10 +476,17 @@
 
          
         .dark .container,
-        .dark .text-container {
+        .dark .text-container,
+        .dark .guide-text-container,
+        .dark .text-container-beta,
+        .dark .image-wrapper {
             background-color: #333;
             color: white;
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .guide-text-container::before{
+            background-color: #333;
         }
 
         .dark .logo-image {
@@ -413,6 +525,14 @@
             .overlay{
                 display: none;
             }
+
+            .text-container-beta{
+                display: block;
+            }
+
+            .wrapper {
+                display: none;
+            }
         }
 
          
@@ -449,6 +569,28 @@
              
         }
 </style>
+
+<script>
+document.querySelector('.wrapper').addEventListener('mouseenter', function() {
+    const imageWrapper = this.querySelector('.image-wrapper');
+    const textContainer = this.querySelector('.guide-text-container');
+
+    imageWrapper.style.opacity = '0'; 
+    textContainer.style.left = '0'; 
+    textContainer.style.opacity = '1'; 
+});
+
+document.querySelector('.wrapper').addEventListener('mouseleave', function() {
+    const imageWrapper = this.querySelector('.image-wrapper');
+    const textContainer = this.querySelector('.guide-text-container');
+
+    imageWrapper.style.opacity = '0.85'; 
+    textContainer.style.left = '100%'; 
+    textContainer.style.opacity = '0'; 
+});
+
+
+</script>
 
 
 
