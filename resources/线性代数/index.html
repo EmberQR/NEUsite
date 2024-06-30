@@ -458,8 +458,9 @@
 <h3 id="答案">答案<a hidden class="anchor" aria-hidden="true" href="#答案">#</a></h3>
 
 
+
 <div id="1">
-  <form onsubmit="event.preventDefault(); a('1', document.getElementById('password-1').value, 'lx0zsyMWt\u002bphOLLhpb1cvKxgr0VhfjXO\u002b8OZ6lBnf3kB3oA3hV94VvUVoomupKxM8QXWbVEBn6kFarvf4YxF\/ikUar2e6eroUHwzyTOcZ\u002bUfuseSI0xbD9nbjZVqdMeGahWN1yPCw0oTjDiNylQVBmk4V3NoBh6x2MkHGQWqumvAb0JRgycwqs2mserd15Lbibzj0Ic92RwZu6pwFvDL\/ffHdrr0q7siCVUvbhOBDH9bTi\u002bUSywIb7zrrrAUtqjMc\/vVaRW\/ky\/CjzQHZkxJAKiXFidZMICZQAXqe8RFKEomWlR6oPdM9FYMFYeZXWURHoih6ZRBHY32oK51PaitNt3mk1hcV\/gz\u002b1NVNIokBl0xfi1V3GlfNuZmLLu4gVoCbiK7GW9JO\u002bjrO2PFsIzp6Ymy0D2lVsHLT4QRLr79sRN9JHb6AqEq3VtH42VH9OnP');">
+  <form onsubmit="event.preventDefault(); a('1', document.getElementById('password-1').value, 'https:\/\/emberimg.oss-cn-beijing.aliyuncs.com\/password\/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AD%94%E6%A1%88\/2021-2022-%E7%A7%8B%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-%E5%8E%86%E5%B1%8A%E8%80%83%E9%A2%98-%E7%AD%94%E6%A1%88.json');">
       <input type="password" id="password-1" placeholder="为本站投稿资源以获取查看此内容的密码。" class="text" style="width: 400px;">
       <button type="submit">查看</button>
   </form>
@@ -468,7 +469,7 @@
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/crypto-js.js"></script>
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/marked.min.js"></script>
 <script>
-  async function a(b, c, d) {
+  async function a(b, c, jsonURL) {
       try {
           const e = await fetch('https://emberimg.oss-cn-beijing.aliyuncs.com/password/h.json');
           const f = await e.json();
@@ -478,10 +479,12 @@
           const i = g.includes(h);
 
           if (i) {
-              const j = 'iasodinaeindeoaf';
-              const k = CryptoJS.SHA256(j);
+              const jsonResponse = await fetch(jsonURL);
+              const jsonData = await jsonResponse.json();
 
-              d = d.replace(/\s/g, '');
+              const j = jsonData.key;
+              const k = CryptoJS.SHA256(j);
+              const d = jsonData.encryptedContent.replace(/\s/g, '');
 
               const l = CryptoJS.enc.Base64.parse(d);
               const m = CryptoJS.lib.WordArray.create(l.words.slice(0, 4));
@@ -513,7 +516,6 @@
 
 <style>
     .dark .text {
-   
   color: lightgray;
 }
 </style>
@@ -530,8 +532,9 @@
 <h3 id="答案-1">答案<a hidden class="anchor" aria-hidden="true" href="#答案-1">#</a></h3>
 
 
+
 <div id="2">
-  <form onsubmit="event.preventDefault(); a('2', document.getElementById('password-2').value, 'YcuQtmHj\u002bA7MJHCU0zdKG\/kihRYhKc5Lwg\/9n2t8po1Ng2Lnvc94Gr4aTlHHietUniDsI1ARyPOl9ooooxzne67hVn3DZSX\u002bKd3ttNlHpirFLy8Se0ZLtBIhC6pIsgF\/NQ1fWfEcEE3yJBtcAAg8pk92uMtT4hALdUo6gt8Rqr\/rR5Wknqw8ZXzT7alPNa7aLorFZJHDCwtXmJ4rz1r5qt043r365NEk1ZDmxpyMx8LPXCE3D\u002btUnYpQXJmYDN\/XdnzwS41TZTZ8uZ13vUPA\/LL9yzBtXgim9BO0T8NQG9amhxh6EHuxTPlCr7nbih\/7d2PWEgS9X7Hhx5HlDGPi\u002bXqsg8nt6bexv7OrAJJ3rfovYUF4oAq9faddloWZoB\u002bOQvLx5cgMo3Bq6I34bfXHHhzt0S2bslJm1Q35R8EVhfjbCxOyQHvuyDMEd2ypZbRh');">
+  <form onsubmit="event.preventDefault(); a('2', document.getElementById('password-2').value, 'https:\/\/emberimg.oss-cn-beijing.aliyuncs.com\/password\/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AD%94%E6%A1%88\/2020-2021-%E7%A7%8B%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-%E5%8E%86%E5%B1%8A%E8%80%83%E9%A2%98-%E7%AD%94%E6%A1%88.json');">
       <input type="password" id="password-2" placeholder="为本站投稿资源以获取查看此内容的密码。" class="text" style="width: 400px;">
       <button type="submit">查看</button>
   </form>
@@ -540,7 +543,7 @@
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/crypto-js.js"></script>
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/marked.min.js"></script>
 <script>
-  async function a(b, c, d) {
+  async function a(b, c, jsonURL) {
       try {
           const e = await fetch('https://emberimg.oss-cn-beijing.aliyuncs.com/password/h.json');
           const f = await e.json();
@@ -550,10 +553,12 @@
           const i = g.includes(h);
 
           if (i) {
-              const j = 'iasodinaeindeoaf';
-              const k = CryptoJS.SHA256(j);
+              const jsonResponse = await fetch(jsonURL);
+              const jsonData = await jsonResponse.json();
 
-              d = d.replace(/\s/g, '');
+              const j = jsonData.key;
+              const k = CryptoJS.SHA256(j);
+              const d = jsonData.encryptedContent.replace(/\s/g, '');
 
               const l = CryptoJS.enc.Base64.parse(d);
               const m = CryptoJS.lib.WordArray.create(l.words.slice(0, 4));
@@ -585,7 +590,6 @@
 
 <style>
     .dark .text {
-   
   color: lightgray;
 }
 </style>
@@ -602,8 +606,9 @@
 <h3 id="答案-2">答案<a hidden class="anchor" aria-hidden="true" href="#答案-2">#</a></h3>
 
 
+
 <div id="3">
-  <form onsubmit="event.preventDefault(); a('3', document.getElementById('password-3').value, 'yUoHciytPEh\u002bHK2Rw8bcv4SM4RL68KJ9dkt\/0Yx0ccexVKjUFq6RKv\u002bRMEEMMvNgQuq15CITVW7pF0ebl8EGPe9LW\/3vpnERdN1bYSI0K8Y3WrupSHK7AN5ndlQuko6ULTW4kgHxrmOcpc6l42L5Jr7dofNH0CVyWiQuIe5bCUGxIJX6phA\u002baLmViaxPiHA4r7A8BCiG1DkIeVUUEBqbW\u002b2QtBt\/0UtB2VwXh6DMKAeS2sxpMeBCrMgVnPh7ofVhtSilJCuaBcORGcjMJD\/oPs6X0QM4MlkSVFXRAlSO65mU517kt5FV4pTMmoQBNzO3DSbUZDHEx14TUbD1JijxobDnpu0Ft\u002b\u002bnT\u002b3wbLoawxlJ08q2OLdXfksMI3yVgL0\u002bkjKS5Qtt61YpxAN9khykVv8SiaNgovSJOwaq0cKCXQnrDvJ5cl2EjashumnIOlIj');">
+  <form onsubmit="event.preventDefault(); a('3', document.getElementById('password-3').value, 'https:\/\/emberimg.oss-cn-beijing.aliyuncs.com\/password\/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AD%94%E6%A1%88\/2020-2021-%E6%98%A5%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-%E5%8E%86%E5%B1%8A%E8%80%83%E9%A2%98-%E7%AD%94%E6%A1%88.json');">
       <input type="password" id="password-3" placeholder="为本站投稿资源以获取查看此内容的密码。" class="text" style="width: 400px;">
       <button type="submit">查看</button>
   </form>
@@ -612,7 +617,7 @@
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/crypto-js.js"></script>
 <script src="https://emberimg.oss-cn-beijing.aliyuncs.com/password/marked.min.js"></script>
 <script>
-  async function a(b, c, d) {
+  async function a(b, c, jsonURL) {
       try {
           const e = await fetch('https://emberimg.oss-cn-beijing.aliyuncs.com/password/h.json');
           const f = await e.json();
@@ -622,10 +627,12 @@
           const i = g.includes(h);
 
           if (i) {
-              const j = 'iasodinaeindeoaf';
-              const k = CryptoJS.SHA256(j);
+              const jsonResponse = await fetch(jsonURL);
+              const jsonData = await jsonResponse.json();
 
-              d = d.replace(/\s/g, '');
+              const j = jsonData.key;
+              const k = CryptoJS.SHA256(j);
+              const d = jsonData.encryptedContent.replace(/\s/g, '');
 
               const l = CryptoJS.enc.Base64.parse(d);
               const m = CryptoJS.lib.WordArray.create(l.words.slice(0, 4));
@@ -657,7 +664,6 @@
 
 <style>
     .dark .text {
-   
   color: lightgray;
 }
 </style>
