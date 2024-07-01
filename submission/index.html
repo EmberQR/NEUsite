@@ -8,15 +8,15 @@
 <title>资源投稿 | NEU小站</title>
 <meta name="keywords" content="">
 <meta name="description" content="感谢您进行资源投稿！为防止内容丢失，请您使用电脑进行投稿操作。下面问卷的加粗内容为必填项。
-基本信息 投稿时间： 您想要投稿的板块为： 新生导航资源共享您的邮箱为： 您的昵称为： 您的头像为： 请注意：1. 如不填写昵称，则不展示投稿者昵称和头像。如填写了昵称未填写头像，则展示默认头像。头像文件不应超过1MB，建议选择长宽比为1:1的图片文件。
+基本信息 投稿时间： 您想要投稿的板块为： 新生指南资源共享您的邮箱为： 您的昵称为： 您的头像为： 请注意：1. 如不填写昵称，则不展示投稿者昵称和头像。如填写了昵称未填写头像，则展示默认头像。头像文件不应超过1MB，建议选择长宽比为1:1的图片文件。
 2. 如您之前已经使用此邮箱和昵称投稿成功并上传头像，则不需要再次上传头像。
 上传文件： 说明：1. 若投稿板块为新生指南，则上传文件非必填项；若投稿至资源共享板块，则必须上传文件。
 2. 单个文件大小不能超过2MB，一次投稿最多上传10个文件。若上传文件有压缩文件，则只允许上传单个.zip或.rar格式压缩文件，大小不得超过20MB。
 3. 若超过大小限制，请填写网盘外链。如有提取密码，请填写网盘提取密码。直接上传文件和网盘外链只能选择一种，禁止同时上传文件和填写网盘外链！
 网盘外链： 网盘提取密码： 备注： 备注中可以填写自己想获得的用于访问加密内容的自定义密码。如已经获取过，请勿再次填写。
-资源展示页 资源展示页详情主要用于新生指南板块。如果您想投稿至资源共享板块，可以把此部分留空。 资源展示页使用 markdown 语法。本页底部提供了一些基本的语法教程，已经熟悉此语法的投稿者可以跳过教程内容。 如需在资源展示页上传图片，请先填写好邮箱信息，然后在此处上传图片以获取图片URL，以在markdown中进行引用。 严禁上传任何与内容无关的图片！
-图片URL：
-复制URL
+资源展示页 资源展示页详情主要用于新生指南板块。如果您想投稿至资源共享板块，可以把此部分留空。 资源展示页使用 markdown 语法。本页底部提供了一些基本的语法教程，已经熟悉此语法的投稿者可以跳过教程内容。 如需在资源展示页上传图片，请先填写好邮箱信息，然后在此处上传图片以获取标签，以直接粘贴到 markdown 中进行引用。我们推荐使用HTML标签以手动控制图片大小。 严禁上传任何与内容无关的图片！
+图片HTML引用标签：
+复制引用标签
 提交
 markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行并不敏感。您即使输入多个空格，markdown 也只会渲染一个空格。例如：
 这是一个 示例文本，含有多个空格。 效果：
@@ -228,7 +228,7 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
 <ul>
 <li>投稿时间：<span id="beijing-time" style="display: inline"></span></li>
 <li><strong>您想要投稿的板块为：</strong> <select id="section" name="section">
-  <option value="新生导航">新生导航</option>
+  <option value="新生指南">新生指南</option>
   <option value="资源共享">资源共享</option>
 </li>
 </ul>
@@ -264,11 +264,11 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
 <ul>
 <li>资源展示页详情主要用于<code>新生指南</code>板块。如果您想投稿至<code>资源共享</code>板块，可以把此部分留空。</li>
 <li>资源展示页使用 markdown 语法。本页底部提供了一些<a href="#markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B">基本的语法教程</a>，已经熟悉此语法的投稿者可以跳过教程内容。</li>
-<li>如需在资源展示页上传图片，<strong>请先填写好邮箱信息</strong>，然后在此处上传图片以获取图片URL，以在markdown中进行<a href="#%E5%9B%BE%E7%89%87">引用</a>。</li>
+<li>如需在资源展示页上传图片，<strong>请先填写好邮箱信息</strong>，然后在此处上传图片以获取标签，以直接粘贴到 markdown 中进行<a href="#%E5%9B%BE%E7%89%87">引用</a>。我们推荐使用HTML标签以手动控制图片大小。</li>
 <li><strong>严禁上传任何与内容无关的图片！</strong><br>
 <input type="file" id="imageUploader" accept="image/*" onchange="uploadImage(event)"><br>
-  <p>图片URL：<a id="imageUrl" href="" target="_blank"></a></p>
-  <button class="Button" id="copyButton" onclick="copyImageUrl()" style="display: none;">复制URL</button><br>
+  <p>图片HTML引用标签：<a id="imageUrl" target="_blank"></a></p>
+  <button class="Button" id="copyButton" onclick="copyImageUrl()" style="display: none;">复制引用标签</button><br>
   <img id="imagePreview" src="" alt="图片预览" style="max-width: 40%; display: none;"><br>
 </li>
 </ul>
@@ -590,7 +590,6 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
         return `${year}${month.padStart(2, '0')}${day.padStart(2, '0')}${hours.padStart(2, '0')}${minutes.padStart(2, '0')}`;
     }
 
-    // 验证并上传图片
     async function uploadImage(event) {
         const file = event.target.files[0];
         const email = document.querySelector("input[name='email']").value.trim();
@@ -617,22 +616,26 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
         try {
             const result = await client.put(filePath, file);
             const imageUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/${filePath}`;
-            document.getElementById("imageUrl").innerText = imageUrl;
-            document.getElementById("imageUrl").href = imageUrl;
+            const imageTag = `<img src="${imageUrl}" alt="自定义图片文字" width="150">`;
+
+            // 展示图片URL和HTML标签
+            document.getElementById("imageUrl").innerText = imageTag;
+            // document.getElementById("imageUrl").href = imageUrl;
             document.getElementById("imagePreview").src = imageUrl;
             document.getElementById("imagePreview").style.display = "block"; // 设置图片预览为显示状态
             document.getElementById("copyButton").style.display = "inline-block";
+
         } catch (error) {
             console.error("图片上传失败:", error);
             alert("图片上传失败！");
         }
     }
 
-    // 复制图片URL到剪贴板
+    // 复制HTML标签到剪贴板
     function copyImageUrl() {
-        const imageUrl = document.getElementById("imageUrl").href;
-        navigator.clipboard.writeText(imageUrl).then(() => {
-            alert("URL已复制到剪贴板！");
+        const imageTag = document.getElementById("imageUrl").innerText;
+        navigator.clipboard.writeText(imageTag).then(() => {
+            alert("标签已复制到剪贴板！请直接粘贴到 markdown 编辑区中，并根据预览效果调整大小。");
         }, (err) => {
             alert("复制失败！", err);
         });
