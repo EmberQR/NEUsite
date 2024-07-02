@@ -637,15 +637,27 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
         }
     }
 
-    // 复制HTML标签到剪贴板
-    function copyImageUrl() {
-        const imageTag = document.getElementById("imageUrl").innerText;
-        navigator.clipboard.writeText(imageTag).then(() => {
-            alert("标签已复制到剪贴板！请直接粘贴到 markdown 编辑区中，并根据预览效果调整大小。");
-        }, (err) => {
-            alert("复制失败！", err);
-        });
+// 复制HTML标签到剪贴板
+function copyImageUrl() {
+    const imageTag = document.getElementById("imageUrl").innerText;
+    // 创建一个临时文本区域元素
+    const textArea = document.createElement("textarea");
+    textArea.value = imageTag;
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        const msg = successful ? '标签已复制到剪贴板！请直接粘贴到 markdown 编辑区中，并根据预览效果调整大小。' : '复制失败！';
+        alert(msg);
+    } catch (err) {
+        alert("复制失败！", err);
     }
+
+    document.body.removeChild(textArea);
+}
+
+
 
     document.getElementById('SubmitButton').onclick = function() {
     // 获取输入的值
