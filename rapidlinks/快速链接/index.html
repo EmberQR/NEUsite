@@ -414,6 +414,12 @@
 
 
 <script>
+          async function fetchNoCache(url) {
+              const timestamp = new Date().getTime(); 
+              const noCacheUrl = `${url}?timestamp=${timestamp}`; 
+              return fetch(noCacheUrl); 
+          }
+
           async function updateAuthorInfo(email) {
             if (!email) {
                 console.log("Email not provided, skipping author info update.");
@@ -423,7 +429,7 @@
             const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/p.json`;
 
             try {
-                const response = await fetch(jsonPath);
+                const response = await fetchNoCache(jsonPath);
                 if (response.ok) {
                     const data = await response.json();
                     if (data && data.nickname) {
@@ -453,7 +459,7 @@
             const url = 'https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json';
 
             try {
-                const response = await fetch(url);
+                const response = await fetchNoCache(url);
                 if (response.ok) {
                     const verifiedEmails = await response.json();
                     if (verifiedEmails.includes(email)) {
@@ -479,7 +485,7 @@
             const avatarUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/avatar`;
 
             try {
-                const response = await fetch(avatarUrl);
+                const response = await fetchNoCache(avatarUrl);
                 if (response.ok) {
                     document.getElementById('avatar').src = avatarUrl;
                     document.getElementById('avatar').style.display = "block";
