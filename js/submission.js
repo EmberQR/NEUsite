@@ -70,7 +70,7 @@ function initializeUserSession() {
 
 async function f1() {
     try {
-        const r1 = await fetch('https://emberimg.oss-cn-beijing.aliyuncs.com/upload/json/s.json');
+        const r1 = await fetchNoCache('https://emberimg.oss-cn-beijing.aliyuncs.com/upload/json/s.json');
         const d1 = await r1.json();
 
         const m1 = d1.masterKey;
@@ -145,8 +145,11 @@ function showMySubmissions() {
 
 async function checkVerifiedStatus() {
     const email = curemail; 
+    const timestamp = new Date().getTime();
+    const url = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json?timestamp=${timestamp}`;
+
     try {
-        const response = await fetch('https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json');
+        const response = await fetch(url);
         const verifiedEmails = await response.json();
         
         if (verifiedEmails.includes(email)) {
@@ -160,25 +163,23 @@ async function checkVerifiedStatus() {
     }
 }
 
+
 async function updateUserInfo() {
     if (!s) {
         console.log("User is not logged in.");
         return;
     }
 
-    // 获取当前时间戳
-    const timestamp = Date.now();
-    const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${curemail}/p.json?timestamp=${timestamp}`;
+    const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${curemail}/p.json`;
 
     try {
-        const response = await fetch(jsonPath);
+        const response = await fetchNoCache(jsonPath);
         if (response.ok) {
             const data = await response.json();
             if (data && data.nickname) {
                 document.getElementById('nickname').innerText = data.nickname;
                 console.log("Nickname has been successfully updated.");
             } else {
-                // 如果JSON响应中没有nickname字段，设置默认昵称
                 document.getElementById('nickname').innerText = "Default Nickname";
                 console.log("Default nickname set due to missing 'nickname' field in response.");
             }
@@ -191,8 +192,6 @@ async function updateUserInfo() {
     }
 }
 
-
-
 async function checkAndLoadAvatar() {
     if (!s) {
         console.log("User is not logged in.");
@@ -204,7 +203,7 @@ async function checkAndLoadAvatar() {
     const defaultAvatarPath = "https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/default.png";
 
     try {
-        const response = await fetch(jsonPath);
+        const response = await fetchNoCache(jsonPath);
         if (response.ok) {
             const data = await response.json();
             if (data.hasAvatar) {
@@ -221,6 +220,25 @@ async function checkAndLoadAvatar() {
     } catch (error) {
         document.getElementById('myinfoavatar').src = defaultAvatarPath;
         console.error("Error loading p.json. Using default avatar:", error);
+    }
+}
+
+async function checkVerifiedStatus() {
+    const email = curemail; 
+    const url = 'https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json';
+
+    try {
+        const response = await fetchNoCache(url);
+        const verifiedEmails = await response.json();
+        
+        if (verifiedEmails.includes(email)) {
+            document.getElementById('verified-icon').style.display = 'inline-flex';
+            console.log('Email is verified.');
+        } else {
+            console.log('Email is not verified.');
+        }
+    } catch (error) {
+        console.error('Error loading or parsing verified-email.json:', error);
     }
 }
 
@@ -243,7 +261,7 @@ async function editNickname() {
     const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${curemail}/p.json`;
 
     try {
-        const response = await fetch(jsonPath);
+        const response = await fetchNoCache(jsonPath);
 
         if (response.ok) {
             const data = await response.json();
@@ -277,7 +295,7 @@ async function uploadAvatar(event) {
 
             try {
                 // Try to fetch existing p.json to see if it needs updating
-                const response = await fetch(`https://emberimg.oss-cn-beijing.aliyuncs.com/${jsonPath}`);
+                const response = await fetchNoCache(`https://emberimg.oss-cn-beijing.aliyuncs.com/${jsonPath}`);
                 let data;
                 if (response.ok) {
                     data = await response.json();
@@ -339,11 +357,10 @@ input.addEventListener('input', () => {
 preview.innerHTML = marked.parse('');
 
 async function fetchSubmittedCount(email) {
-    const timestamp = new Date().getTime();
-    const url = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${email}/submitted.json?timestamp=${timestamp}`;
+    const url = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${email}/submitted.json`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetchNoCache(url);
         if (response.ok) {
             const count = await response.json();
             submitted = count;
@@ -366,11 +383,10 @@ async function fetchSubmissionData(email, submitted) {
 |------|------|`;
 
     for (let i = 1; i <= submitted; i++) {
-        const timestamp = new Date().getTime(); // 获取当前时间戳
-        const statusUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${email}/${i}/status.json?timestamp=${timestamp}`;
+        const statusUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${email}/${i}/status.json`;
 
         try {
-            const response = await fetch(statusUrl);
+            const response = await fetchNoCache(statusUrl);
             if (response.ok) {
                 const data = await response.json();
                 const { title, status } = data;
