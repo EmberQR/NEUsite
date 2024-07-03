@@ -10,22 +10,23 @@
 <meta name="description" content="此处列举了南湖校区和浑南校区的宿舍床铺规格，供大家选购床上用品参考。
 南湖校区宿舍规格 序号 宿舍 长、宽 (mm) 误差≤10 类型 人数 类型 1 一舍东、西 4张1900*850
 2张2000*850 上下铺 6 男本科 2 老二舍东、西 1970*900 上下铺 6 男本科 3 新生舍 2000*900 上下铺 6 男本科 4 三舍AB、C及六舍 2000*900 上下铺 4 男本科、男硕士 5 四舍东、西 1960*900 上下铺 6 女本科 6 五舍 1960*900 上下铺 6 男本科 7 培训公寓 1960*900 上下铺 6 女本科 8 七舍 1960*900 单床 2 男博士 9 八舍ABC 1965*900 上床下桌 4 男硕士 10 八舍DEF 1950*890 上床下桌 4 女硕士 11 八舍G 1950*890 上床下桌 4 男硕士、男预科 12 八舍H高层 1980*890 单床 2 男博士 13 八舍H低层 1950*890 上床下桌 4 男硕士 14 九舍A、G 1950*910 上床下桌 4 女本科、女硕士 15 九舍A、D 1965*900 上床下桌 4 女博士 16 九舍BC 1965*900 单床 2 男博士 17 九舍东、西 1965*900 单床 2 女博士 18 十舍ABC 1960*900 上床下桌 4 男硕士 注：学生因身体等原因，可以根据实际情况，申请更换加长床（一般为2100mm）等特殊类型公寓床。">
-<meta name="author" content=" 
- 
+<meta name="author" content="
 
 
-    
+
+
+
+
+
+  
+  
+  
       
-      
-        Ember
           
-            
-              
-              V
-            
-          
+          V
       
-    ">
+  
+">
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/freshman/%E5%AE%BF%E8%88%8D%E8%A7%84%E6%A0%BC/">
 
 <link rel="stylesheet" href="/css/custom.css"> 
@@ -289,8 +290,8 @@
     <div class="post-meta">
       <span title='2024-06-18 10:10:19 +0800 CST'>2024年6月18日</span>
 <div style="display: flex; align-items: center; margin-top: 10px">
-  <span style="margin-right: 10px; margin-top: 10px">发布者：</span> 
- 
+  <span style="margin-right: 10px; margin-top: 10px">发布者：</span>
+
 
 <style>
  
@@ -313,7 +314,8 @@
 .verified-icon {
   display: inline-flex;
   align-items: center;
-  margin-left: 3px;
+  margin-left: 10px;
+  margin-top: 8px;
   transform: translateY(2px);
 }
 .verified-svg {
@@ -341,18 +343,19 @@
   box-shadow: 0 0 10px rgba(249, 248, 248, 0.5);
 }
 </style>
-    <div class="post-author-wrapper">
-      <img src="https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/Ember.png" alt="Ember" class="avatar">
-      <span class="post-author">
-        Ember
-          <span class="verified-icon" title="已认证优质内容分享者">
-            <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-              <circle cx="12" cy="12" r="12" fill="gold"/>
-              <text class="verified-text" x="12" y="16" dy="0.12em">V</text>
-            </svg>
-          </span>
-      </span>
-    </div>
+
+
+
+<div class="post-author-wrapper">
+  <img src="https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/default.png" alt="Author Avatar" class="avatar" id="avatar" style="display: none">
+  <span class="post-author" id="post-author"></span>
+  <span class="verified-icon" style="display: none;" id="verified-icon" title="已认证优质内容分享者">
+      <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+          <circle cx="12" cy="12" r="12" fill="gold"/>
+          <text class="verified-text" x="12" y="16" dy="0.12em">V</text>
+      </svg>
+  </span>
+</div>
 </div>
 
       
@@ -705,6 +708,100 @@
     
   </footer>
 
+
+<script>
+          async function updateAuthorInfo(email) {
+            if (!email) {
+                console.log("Email not provided, skipping author info update.");
+                return;
+            }
+
+            const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/p.json`;
+
+            try {
+                const response = await fetch(jsonPath);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.nickname) {
+                        document.getElementById('post-author').innerText = data.nickname;
+                        console.log("Author name has been successfully updated.");
+                    } else {
+                        document.getElementById('post-author').innerText = "默认昵称";
+                        console.log("Default author name set due to missing 'nickname' field in response.");
+                    }
+                } else if (response.status === 404) {
+                    document.getElementById('post-author').innerText = "默认昵称";
+                } else {
+                    throw new Error('Failed to fetch p.json');
+                }
+            } catch (error) {
+                console.error("Error loading author info:", error);
+                document.getElementById('post-author').innerText = "默认昵称";
+            }
+        }
+
+        async function checkVerifiedStatus(email) {
+            if (!email) {
+                console.log("Email not provided, skipping verified status check.");
+                return;
+            }
+
+            const url = 'https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json';
+
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const verifiedEmails = await response.json();
+                    if (verifiedEmails.includes(email)) {
+                        document.getElementById('verified-icon').style.display = 'inline-flex';
+                        console.log('Email is verified.');
+                    } else {
+                        console.log('Email is not verified.');
+                    }
+                } else {
+                    throw new Error('Failed to fetch verified-email.json');
+                }
+            } catch (error) {
+                console.error('Error loading or parsing verified-email.json:', error);
+            }
+        }
+
+        async function updateAvatar(email) {
+            if (!email) {
+                console.log("Email not provided, skipping avatar update.");
+                return;
+            }
+
+            const avatarUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/avatar`;
+
+            try {
+                const response = await fetch(avatarUrl);
+                if (response.ok) {
+                    document.getElementById('avatar').src = avatarUrl;
+                    document.getElementById('avatar').style.display = "block";
+                    console.log("Avatar updated.");
+                } else if (response.status === 404) {
+                    console.log("Avatar file not found, using default avatar.");
+                } else {
+                    throw new Error('Failed to fetch avatar');
+                }
+            } catch (error) {
+                console.error("Error loading avatar:", error);
+            }
+        }
+
+        
+        const email = ""; 
+
+        if (email) {
+            
+            updateAuthorInfo(email);
+            checkVerifiedStatus(email);
+            updateAvatar(email);
+        } else {
+            console.log("Email parameter is missing.");
+        }
+</script>
 
 </article>
 </body>

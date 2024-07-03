@@ -11,22 +11,23 @@
 此处收录了《大学化学》选择题期末题库。如需下载，请在PDF预览窗口点击保存按钮即可。
 温馨提示：手机端可能无法正常预览PDF文件。请使用电脑浏览器访问。
 《大学化学》选择题期末题库 您的设备无法正常显示PDF文件。 点击此处下载。">
-<meta name="author" content=" 
- 
+<meta name="author" content="
 
 
-    
+
+
+
+
+
+  
+  
+  
       
-      
-        DG sweet
           
-            
-              
-              V
-            
-          
+          V
       
-    ">
+  
+">
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/resources/%E5%A4%A7%E5%8C%96/">
 
 <link rel="stylesheet" href="/css/custom.css"> 
@@ -131,10 +132,6 @@
   "inLanguage": "en",
   "datePublished": "2024-06-14T12:00:00+08:00",
   "dateModified": "2024-06-14T12:00:00+08:00",
-  "author":{
-    "@type": "Person",
-    "name": "DG sweet"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://xn--xhq44jb2fzpc.com/resources/%E5%A4%A7%E5%8C%96/"
@@ -288,8 +285,8 @@
     <div class="post-meta">
       <span title='2024-06-14 12:00:00 +0800 CST'>2024年6月14日</span>
 <div style="display: flex; align-items: center; margin-top: 10px">
-  <span style="margin-right: 10px; margin-top: 10px">发布者：</span> 
- 
+  <span style="margin-right: 10px; margin-top: 10px">发布者：</span>
+
 
 <style>
  
@@ -312,7 +309,8 @@
 .verified-icon {
   display: inline-flex;
   align-items: center;
-  margin-left: 3px;
+  margin-left: 10px;
+  margin-top: 8px;
   transform: translateY(2px);
 }
 .verified-svg {
@@ -340,18 +338,19 @@
   box-shadow: 0 0 10px rgba(249, 248, 248, 0.5);
 }
 </style>
-    <div class="post-author-wrapper">
-      <img src="https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/DG%20sweet.jpg" alt="DG sweet" class="avatar">
-      <span class="post-author">
-        DG sweet
-          <span class="verified-icon" title="已认证优质内容分享者">
-            <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-              <circle cx="12" cy="12" r="12" fill="gold"/>
-              <text class="verified-text" x="12" y="16" dy="0.12em">V</text>
-            </svg>
-          </span>
-      </span>
-    </div>
+
+
+
+<div class="post-author-wrapper">
+  <img src="https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/default.png" alt="Author Avatar" class="avatar" id="avatar" style="display: none">
+  <span class="post-author" id="post-author"></span>
+  <span class="verified-icon" style="display: none;" id="verified-icon" title="已认证优质内容分享者">
+      <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+          <circle cx="12" cy="12" r="12" fill="gold"/>
+          <text class="verified-text" x="12" y="16" dy="0.12em">V</text>
+      </svg>
+  </span>
+</div>
 </div>
 
       
@@ -410,6 +409,100 @@
     
   </footer>
 
+
+<script>
+          async function updateAuthorInfo(email) {
+            if (!email) {
+                console.log("Email not provided, skipping author info update.");
+                return;
+            }
+
+            const jsonPath = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/p.json`;
+
+            try {
+                const response = await fetch(jsonPath);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.nickname) {
+                        document.getElementById('post-author').innerText = data.nickname;
+                        console.log("Author name has been successfully updated.");
+                    } else {
+                        document.getElementById('post-author').innerText = "默认昵称";
+                        console.log("Default author name set due to missing 'nickname' field in response.");
+                    }
+                } else if (response.status === 404) {
+                    document.getElementById('post-author').innerText = "默认昵称";
+                } else {
+                    throw new Error('Failed to fetch p.json');
+                }
+            } catch (error) {
+                console.error("Error loading author info:", error);
+                document.getElementById('post-author').innerText = "默认昵称";
+            }
+        }
+
+        async function checkVerifiedStatus(email) {
+            if (!email) {
+                console.log("Email not provided, skipping verified status check.");
+                return;
+            }
+
+            const url = 'https://emberimg.oss-cn-beijing.aliyuncs.com/upload/verified-email/verified-email.json';
+
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const verifiedEmails = await response.json();
+                    if (verifiedEmails.includes(email)) {
+                        document.getElementById('verified-icon').style.display = 'inline-flex';
+                        console.log('Email is verified.');
+                    } else {
+                        console.log('Email is not verified.');
+                    }
+                } else {
+                    throw new Error('Failed to fetch verified-email.json');
+                }
+            } catch (error) {
+                console.error('Error loading or parsing verified-email.json:', error);
+            }
+        }
+
+        async function updateAvatar(email) {
+            if (!email) {
+                console.log("Email not provided, skipping avatar update.");
+                return;
+            }
+
+            const avatarUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/avatar`;
+
+            try {
+                const response = await fetch(avatarUrl);
+                if (response.ok) {
+                    document.getElementById('avatar').src = avatarUrl;
+                    document.getElementById('avatar').style.display = "block";
+                    console.log("Avatar updated.");
+                } else if (response.status === 404) {
+                    console.log("Avatar file not found, using default avatar.");
+                } else {
+                    throw new Error('Failed to fetch avatar');
+                }
+            } catch (error) {
+                console.error("Error loading avatar:", error);
+            }
+        }
+
+        
+        const email = "3055938446@qq.com"; 
+
+        if (email) {
+            
+            updateAuthorInfo(email);
+            checkVerifiedStatus(email);
+            updateAvatar(email);
+        } else {
+            console.log("Email parameter is missing.");
+        }
+</script>
 
 </article>
 </body>
