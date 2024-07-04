@@ -379,8 +379,8 @@ async function fetchSubmissionData(email, submitted) {
     let markdownTable = `
 ## 投稿记录
 
-| 标题 | 状态 |
-|------|------|`;
+| 标题 | 板块 | 审核状态 | 审核备注 |
+|------|------|------|------|`;
 
     for (let i = 1; i <= submitted; i++) {
         const statusUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${email}/${i}/status.json`;
@@ -389,9 +389,16 @@ async function fetchSubmissionData(email, submitted) {
             const response = await fetchNoCache(statusUrl);
             if (response.ok) {
                 const data = await response.json();
-                const { title, status } = data;
+                const { title, section, status, note, link } = data;
+                
+                // 设置标题列的内容，如果状态为“已通过”，则设置为超链接
+                let titleContent = title || '无标题';
+                if (status === '已通过' && link) {
+                    titleContent = `<a href="${link}" target="_blank">${titleContent}</a>`;
+                }
+
                 markdownTable += `
-| ${title || '无标题'} | ${status || '无状态'} |`;
+| ${titleContent} | ${section || '无板块'} | ${status || '无状态'} | ${note || ''} |`;
             } else {
                 console.error(`无法获取 ${statusUrl}: ${response.status} ${response.statusText}`);
             }
@@ -402,11 +409,12 @@ async function fetchSubmissionData(email, submitted) {
 
     if (submitted === 0) {
         markdownTable += `
-| 没有投稿记录 |  |`;
+| 没有投稿记录 |  |  |  |`;
     }
 
     document.getElementById('mysubmission').innerHTML = marked.parse(markdownTable);
 }
+
 
 
 
@@ -590,14 +598,17 @@ async function uploadData() {
         const userData = await response.json();
         const nickname = userData.nickname || "未知昵称"; 
 
+        const note = "";
+        const link = "";
+
         const userInfoText = `时间：${getBeijingTime()}\n内容标题：${title}\n邮箱：${email}\n板块：${section}\n昵称：${nickname}\n备注：${note}\n网盘外链：${wp}\n网盘提取密码：${wppassword}\n资源展示页：\n${markdownContent}`;
         const userTextFilePath = `upload/${email}/${postId}/userinfo.txt`;
         const statusFilePath = `upload/${email}/${postId}/status.json`;
-        const statusData = { title: title, status: "审核中" };
+        const statusData = { title: title, status: "审核中", section: section, note: note, link: link };
 
-        await client.put(userTextFilePath, new Blob([userInfoText], {type: 'text/plain'}));
+        await client.put(userTextFilePath, new Blob([userInfoText], { type: 'text/plain' }));
 
-        await client.put(statusFilePath, new Blob([JSON.stringify(statusData)], {type: 'application/json'}));
+        await client.put(statusFilePath, new Blob([JSON.stringify(statusData)], { type: 'application/json' }));
 
         const files = document.getElementById('filePicker').files;
         for (let i = 0; i < files.length; i++) {
@@ -605,7 +616,7 @@ async function uploadData() {
         }
 
         submitted += 1;
-        await client.put(`upload/${email}/submitted.json`, new Blob([JSON.stringify(submitted)], {type: 'application/json'}));
+        await client.put(`upload/${email}/submitted.json`, new Blob([JSON.stringify(submitted)], { type: 'application/json' }));
 
         window.location.href = '/submissionsuccess/';
     } catch (error) {
