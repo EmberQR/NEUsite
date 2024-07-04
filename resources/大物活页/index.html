@@ -474,28 +474,34 @@
         }
 
         async function updateAvatar(email) {
-            if (!email) {
-                console.log("Email not provided, skipping avatar update.");
-                return;
-            }
+          if (!email) {
+              console.log("Email not provided, skipping avatar update.");
+              return;
+          }
 
-            const avatarUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/avatar`;
+          const avatarUrl = `https://emberimg.oss-cn-beijing.aliyuncs.com/user/${email}/avatar`;
+          const defaultAvatarUrl = "https://emberimg.oss-cn-beijing.aliyuncs.com/avatar/default.png";
 
-            try {
-                const response = await fetchNoCache(avatarUrl);
-                if (response.ok) {
-                    document.getElementById('avatar').src = avatarUrl;
-                    document.getElementById('avatar').style.display = "block";
-                    console.log("Avatar updated.");
-                } else if (response.status === 404) {
-                    console.log("Avatar file not found, using default avatar.");
-                } else {
-                    throw new Error('Failed to fetch avatar');
-                }
-            } catch (error) {
-                console.error("Error loading avatar:", error);
-            }
-        }
+          try {
+              const response = await fetchNoCache(avatarUrl);
+              if (response.ok) {
+                  document.getElementById('avatar').src = avatarUrl;
+                  document.getElementById('avatar').style.display = "block";
+                  console.log("Avatar updated.");
+              } else if (response.status === 404) {
+                  document.getElementById('avatar').src = defaultAvatarUrl;
+                  document.getElementById('avatar').style.display = "block";
+                  console.log("Avatar file not found, using default avatar.");
+              } else {
+                  throw new Error('Failed to fetch avatar');
+              }
+          } catch (error) {
+              document.getElementById('avatar').src = defaultAvatarUrl;
+              document.getElementById('avatar').style.display = "block";
+              console.error("Error loading avatar:", error);
+          }
+}
+
 
         
         const email = "3055938446@qq.com"; 
