@@ -671,13 +671,14 @@ document.getElementById('LoadDraft').addEventListener('click', async () => {
             }
         } else {
             const draftData = await response.json();
-            document.getElementById('input').value = draftData.content;
-            preview.innerHTML = marked.parse(draftData.content);
-            alert("草稿已加载！");
+            if (confirm("此操作会覆盖您当前的输入内容，确认加载草稿吗？")) {
+                document.getElementById('input').value = draftData.content;
+                preview.innerHTML = marked.parse(draftData.content);
+                alert("草稿已加载！");
+            }
         }
     } catch (error) {
         console.error("加载草稿时出错:", error);
         alert("加载草稿失败，请稍后再试。");
     }
 });
-
