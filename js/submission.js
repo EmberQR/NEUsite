@@ -628,3 +628,56 @@ async function uploadData() {
 
 
 };
+
+document.getElementById('SaveDraft').addEventListener('click', async () => {
+    if (!s) {
+        alert("非法操作！请先登录。");
+        return;
+    }
+
+    if (confirm("确认保存草稿吗？如您之前有草稿内容，此操作会覆盖前一次的草稿内容。")) {
+        const draftContent = document.getElementById('input').value;
+        const currentPostId = submitted + 1;
+        const filePath = `upload/${curemail}/${currentPostId}/draft.json`;
+
+        const draftData = new Blob([JSON.stringify({ content: draftContent }, null, 2)], { type: 'application/json' });
+
+        try {
+            await client.put(filePath, draftData);
+            alert("草稿已保存！");
+        } catch (error) {
+            console.error("保存草稿时出错:", error);
+            alert("保存草稿失败，请稍后再试。");
+        }
+    }
+});
+
+document.getElementById('LoadDraft').addEventListener('click', async () => {
+    if (!s) {
+        alert("非法操作！请先登录。");
+        return;
+    }
+
+    const currentPostId = submitted + 1;
+    const draftURL = `https://emberimg.oss-cn-beijing.aliyuncs.com/upload/${curemail}/${currentPostId}/draft.json`;
+
+    try {
+        const response = await fetch(draftURL);
+        if (!response.ok) {
+            if (response.status === 404) {
+                alert("没有草稿记录！");
+            } else {
+                throw new Error("无法加载草稿内容");
+            }
+        } else {
+            const draftData = await response.json();
+            document.getElementById('input').value = draftData.content;
+            preview.innerHTML = marked.parse(draftData.content);
+            alert("草稿已加载！");
+        }
+    } catch (error) {
+        console.error("加载草稿时出错:", error);
+        alert("加载草稿失败，请稍后再试。");
+    }
+});
+
