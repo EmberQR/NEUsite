@@ -63,6 +63,7 @@ function initializeUserSession() {
     checkAndLoadAvatar();
     updateUserInfo();
     checkVerifiedStatus();
+    checkInvitedStatus();
     fetchSubmittedCount(curemail);
     document.getElementById('userEmail').innerText = curemail;
 }
@@ -143,27 +144,6 @@ function showMySubmissions() {
     document.getElementById('mysubmission').style.display = 'block';
 }
 
-async function checkVerifiedStatus() {
-    const email = curemail; 
-    const timestamp = new Date().getTime();
-    const url = `https://download.xn--xhq44jb2fzpc.com/upload/verified-email/verified-email.json?timestamp=${timestamp}`;
-
-    try {
-        const response = await fetch(url);
-        const verifiedEmails = await response.json();
-        
-        if (verifiedEmails.includes(email)) {
-            document.getElementById('verified-icon').style.display = 'inline-flex';
-            console.log('Email is verified.');
-        } else {
-            console.log('Email is not verified.');
-        }
-    } catch (error) {
-        console.error('Error loading or parsing verified-email.json:', error);
-    }
-}
-
-
 async function updateUserInfo() {
     if (!s) {
         console.log("User is not logged in.");
@@ -239,6 +219,25 @@ async function checkVerifiedStatus() {
         }
     } catch (error) {
         console.error('Error loading or parsing verified-email.json:', error);
+    }
+}
+
+async function checkInvitedStatus() {
+    const email = curemail; 
+    const url = 'https://download.xn--xhq44jb2fzpc.com/upload/invited-email/invited-email.json';
+
+    try {
+        const response = await fetchNoCache(url);
+        const invitedEmails = await response.json();
+        
+        if (invitedEmails.includes(email)) {
+            document.getElementById('invited-icon').style.display = 'inline-flex';
+            console.log('Email is an invited author.');
+        } else {
+            console.log('Email is not an invited author.');
+        }
+    } catch (error) {
+        console.error('Error loading or parsing invited-email.json:', error);
     }
 }
 

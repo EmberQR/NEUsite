@@ -22,13 +22,20 @@
 
 
   
+  Author Name
   
-  
+    
       
-          
-          V
-      
+      V
+    
   
+  
+    
+      
+      V
+    
+  
+
 ">
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/resources/%E9%AB%98%E6%95%B0/">
 
@@ -320,7 +327,7 @@
   display: inline-flex;
   align-items: center;
   margin-left: 10px;
-  margin-top: 8px;
+   
   transform: translateY(2px);
 }
 .verified-svg {
@@ -353,14 +360,21 @@
 
 <div class="post-author-wrapper">
   <img src="https://download.xn--xhq44jb2fzpc.com/avatar/default.png" alt="Author Avatar" class="avatar" id="avatar" style="display: none">
-  <span class="post-author" id="post-author"></span>
-  <span class="verified-icon" style="display: none;" id="verified-icon" title="已认证优质内容分享者">
-      <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-          <circle cx="12" cy="12" r="12" fill="gold"/>
-          <text class="verified-text" x="12" y="16" dy="0.12em">V</text>
-      </svg>
+  <span class="post-author" id="post-author">Author Name</span>
+  <span class="icon" id="invited-icon" style="display: none; margin-left: 8px; margin-top: 10px;" title="特邀作者">
+    <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+      <circle cx="12" cy="12" r="12" fill="purple"/>
+      <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="white" font-size="12px">V</text>
+    </svg>
+  </span>
+  <span class="icon" id="verified-icon" style="display: none; margin-left: 8px; margin-top: 10px;" title="已认证优质内容分享者">
+    <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+      <circle cx="12" cy="12" r="12" fill="gold"/>
+      <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="black" font-size="12px">V</text>
+    </svg>
   </span>
 </div>
+
 </div>
 
       
@@ -427,7 +441,7 @@
   </footer>
 
 
-<script src="https://download.xn--xhq44jb2fzpc.com/upload/single.js?version=1.0.2"></script>
+<script src="https://download.xn--xhq44jb2fzpc.com/upload/single.js?version=1.0.4"></script>
 <script>
         
         const email = "3055938446@qq.com"; 
@@ -436,6 +450,7 @@
             
             updateAuthorInfo(email);
             checkVerifiedStatus(email);
+            checkInvitedStatus(email);
             updateAvatar(email);
         } else {
             console.log("Email parameter is missing.");
