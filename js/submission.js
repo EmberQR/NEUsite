@@ -661,7 +661,7 @@ document.getElementById('LoadDraft').addEventListener('click', async () => {
     const draftURL = `https://download.xn--xhq44jb2fzpc.com/upload/${curemail}/${currentPostId}/draft.json`;
 
     try {
-        const response = await fetch(draftURL);
+        const response = await fetchNoCache(draftURL);
         if (!response.ok) {
             if (response.status === 404) {
                 alert("没有草稿记录！");
