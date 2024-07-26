@@ -16,26 +16,29 @@
 
 
 
-
-
-
-
+  
   
   
   
     
-      
-      V
     
-  
-  
     
-      
-      V
+        
+            
+            V
+        
     
-  
-
-">
+    
+        
+            
+            V
+        
+    
+    
+        
+        
+    
+  ">
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/resources/%E6%A6%82%E7%8E%87%E8%AE%BA/">
 
 <link rel="stylesheet" href="/css/custom.css"> 
@@ -303,75 +306,129 @@
 
 
 <style>
- 
-.post-author-wrapper {
-  display: flex;
-  align-items: center;
-  margin-top: 0px;
-}
-.post-author {
-  font-weight: bold;
-  color: black;
-  font-size: 1.1em;
-  margin-left: 4px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.dark .post-author {
-  color: #d3d3d3;
-}
-.verified-icon {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 10px;
    
-  transform: translateY(2px);
+  .post-author-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    position: relative;  
+  }
+  .post-author {
+    font-weight: bold;
+    color: black;
+    font-size: 1.1em;
+    margin-left: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .dark .post-author {
+    color: #d3d3d3;
+  }
+  .verified-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+     
+    transform: translateY(2px);
+  }
+  .verified-svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .verified-text {
+    fill: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    text-anchor: middle;
+    font-weight: normal;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: 10px;
+  }
+  .dark .avatar {
+    box-shadow: 0 0 10px rgba(249, 248, 248, 0.5);
+  }
+  .tooltip {
+    position: absolute;
+    left: 55%;  
+    transform: translateX(-45%) translateY(-10px);   
+    margin-top: 10px;  
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;  
+    width: 250px;  
+    height: auto;  
+    z-index: 100;
+    top: 100%;  
+    margin-left: 40px;
 }
-.verified-svg {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
+
+.tooltip.show {
+    opacity: 1;
+    transform: translateX(-45%) translateY(0);  
 }
-.verified-text {
-  fill: white;
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  text-anchor: middle;
-  font-weight: normal;
-}
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin-right: 10px;
-  vertical-align: middle;
-  margin-top: 10px;
-}
-.dark .avatar {
-  box-shadow: 0 0 10px rgba(249, 248, 248, 0.5);
-}
-</style>
 
 
+.tooltip-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
 
-<div class="post-author-wrapper">
-  <img src="https://download.xn--xhq44jb2fzpc.com/avatar/default.png" alt="Author Avatar" class="avatar" id="avatar" style="display: none">
-  <span class="post-author" id="post-author"></span>
-  <span class="icon" id="invited-icon" style="display: none; margin-left: 8px; margin-top: 10px;" title="特邀作者">
-    <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="12" fill="purple"/>
-      <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="white" font-size="12px">V</text>
-    </svg>
-  </span>
-  <span class="icon" id="verified-icon" style="display: none; margin-left: 8px; margin-top: 10px;" title="已认证优质内容分享者">
-    <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-      <circle cx="12" cy="12" r="12" fill="gold"/>
-      <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="black" font-size="12px">V</text>
-    </svg>
-  </span>
-</div>
+.tooltip-content {
+    font-size: 14px;
+    color: #333;
+}
 
+ 
+.dark .tooltip {
+    background-color: #333;
+    color: #f2f2f2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark .tooltip-title {
+    color: #fff;
+}
+
+.dark .tooltip-content {
+    color: #ddd;
+}
+
+  
+  </style>
+  
+  
+  
+  <div class="post-author-wrapper">
+    <img src="https://download.xn--xhq44jb2fzpc.com/avatar/default.png" alt="" class="avatar" id="avatar" style="display: none">
+    <span class="post-author" id="post-author"></span>
+    <span class="icon invited-icon" id="invited-icon" style="display: none; margin-left: 8px; margin-top: 10px;">
+        <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+            <circle cx="12" cy="12" r="12" fill="purple"/>
+            <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="white" font-size="12px">V</text>
+        </svg>
+    </span>
+    <span class="icon verified-icon" id="verified-icon" style="display: none; margin-left: 8px; margin-top: 6px;">
+        <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+            <circle cx="12" cy="12" r="12" fill="gold"/>
+            <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="black" font-size="12px">V</text>
+        </svg>
+    </span>
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title" id="tooltip-title"></div>
+        <div class="tooltip-content" id="tooltip-content"></div>
+    </div>
+  </div>
 </div>
 
       
@@ -425,7 +482,8 @@
   </footer>
 
 
-<script src="https://download.xn--xhq44jb2fzpc.com/upload/single.js?version=1.0.4"></script>
+<script src="https://download.xn--xhq44jb2fzpc.com/upload/single.js?version=1.0.5"></script>
+
 <script>
         
         const email = "3055938446@qq.com"; 
@@ -433,9 +491,9 @@
         if (email) {
             
             updateAuthorInfo(email);
+            updateAvatar(email);
             checkVerifiedStatus(email);
             checkInvitedStatus(email);
-            updateAvatar(email);
         } else {
             console.log("Email parameter is missing.");
         }
