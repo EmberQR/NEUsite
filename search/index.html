@@ -253,11 +253,118 @@
     <div class="post-meta"></div>
 </header>
 
+
+<section class="hot-searches">
+    <h3>🔥热门关键词🔥</h3>
+    <div class="search-tags">
+        <div class="search-tag-card" onclick="fillSearch('高数')">
+            高数
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('宿舍')">
+            宿舍
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('线性代数')">
+            线性代数
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('毛概')">
+            毛概
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('概率论')">
+            概率论
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('大英')">
+            大英
+        </div>
+        <div class="search-tag-card" onclick="fillSearch('C语言')">
+            C语言
+        </div>
+    </div>
+</section>
+
 <div id="searchbox">
     <input id="searchInput" autofocus placeholder="期末真题"
         aria-label="search" type="search" autocomplete="off" maxlength="64">
     <ul id="searchResults" aria-label="search results"></ul>
 </div>
+
+<script>
+
+function fillSearch(term) {
+    
+    var searchInput = document.getElementById('searchInput');
+    
+
+    
+    searchInput.value = term;
+
+    
+    var event = new Event('keyup', {
+        bubbles: true,
+        cancelable: true
+    });
+    searchInput.dispatchEvent(event);
+}
+
+
+function autoFillSearchFromQuery() {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('searchquery');
+
+    fillSearch(searchQuery);
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    autoFillSearchFromQuery();
+});
+
+
+</script>
+
+<style>
+.search-tag-card {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f5f5f5;  
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+}
+
+.search-tag-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);  
+}
+
+.search-tag-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+}
+
+ 
+.dark .search-tag-card {
+    background-color: #333333;  
+    color: #ffffff;  
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);  
+}
+
+.dark .search-tag-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(255, 255, 255, 0.2);  
+}
+
+.dark .search-tag-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);  
+}
+
+
+</style>
     </main>
     
 <footer class="footer">
