@@ -311,7 +311,12 @@ function autoFillSearchFromQuery() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('searchquery');
 
-    fillSearch(searchQuery);
+    if (searchQuery) {
+        
+        setTimeout(() => {
+            fillSearch(searchQuery);
+        }, 100); 
+    }
 }
 
 
