@@ -86,7 +86,7 @@ async function f1() {
         };
 
         client = new OSS(c1); 
-        console.log("OSS Client Initialized Successfully with decrypted config", client);
+        // console.log("OSS Client Initialized Successfully with decrypted config", client);
     } catch (e1) {
         console.error('Failed to fetch or decrypt OSS config:', e1);
     }
