@@ -28,7 +28,7 @@ markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行
 这是第一行。 这是第二行。 效果：
 这是第一行。
 这是第二行。
-加粗与斜体 使用**文本**和*文本*来分别表示加粗和斜体。例如：">
+加粗与斜体 使用**文本**或&lt;strong&gt;文本&lt;/strong&gt;来表示加粗文本，使用*文本*或&lt;em&gt;文本&lt;/em&gt;来表示斜体文本。我们不推荐使用星号*，而推荐使用strong或em标签，因为前者在某些情况下可能失效，而后者不会失效。例如：">
 <meta name="author" content="
 
 
@@ -650,10 +650,14 @@ async function fetchNoCache(url) {
 <p>这是第一行。<br>
 这是第二行。</p>
 <h4 id="加粗与斜体">加粗与斜体<a hidden class="anchor" aria-hidden="true" href="#加粗与斜体">#</a></h4>
-<p>使用<code>**文本**</code>和<code>*文本*</code>来分别表示加粗和斜体。例如：</p>
+<p>使用<code>**文本**</code>或<code>&lt;strong&gt;文本&lt;/strong&gt;</code>来表示加粗文本，使用<code>*文本*</code>或<code>&lt;em&gt;文本&lt;/em&gt;</code>来表示斜体文本。<strong>我们不推荐使用星号<code>*</code>，而推荐使用<code>strong</code>或<code>em</code>标签</strong>，因为前者在某些情况下可能失效，而后者不会失效。例如：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>**加粗**
 </span></span><span style="display:flex;"><span>*斜体*
+</span></span><span style="display:flex;"><span>&lt;strong&gt;加粗&lt;/strong&gt;
+</span></span><span style="display:flex;"><span>&lt;em&gt;斜体&lt;/em&gt;
 </span></span></code></pre></div><p>效果：<br>
+<strong>加粗</strong><br>
+<em>斜体</em><br>
 <strong>加粗</strong><br>
 <em>斜体</em></p>
 <h4 id="多级标题">多级标题<a hidden class="anchor" aria-hidden="true" href="#多级标题">#</a></h4>
