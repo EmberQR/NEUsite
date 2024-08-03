@@ -57,6 +57,33 @@ try {
 }
 });
 
+var simplemde = new SimpleMDE({ 
+    element: document.getElementById("input"),
+    placeholder: "请在此处编辑并预览您的内容详情。",
+    spellChecker: false,
+    toolbar: [
+        "side-by-side", 
+        "|",
+        "bold", 
+        "italic", 
+        "heading-1", 
+        "heading-2", 
+        "heading-3", 
+        "|", 
+        "quote", 
+        "unordered-list", 
+        "ordered-list", 
+        "|", 
+        "link", 
+        "image", 
+        "table", 
+        "horizontal-rule", 
+        "|", 
+        "preview", 
+        "fullscreen"
+    ]
+});
+
 function initializeUserSession() {
     document.getElementById('login').style.display = 'none';
     document.getElementById('navContainer').style.display = 'block';
@@ -434,15 +461,15 @@ document.querySelector('.overlay').addEventListener('click', function() {
 });
 
 const input = document.getElementById('input');
-const preview = document.getElementById('preview');
+// const preview = document.getElementById('preview');
 
-input.addEventListener('input', () => {
-    const markdownText = input.value;
-    preview.innerHTML = marked.parse(markdownText);
-});
+// input.addEventListener('input', () => {
+//     const markdownText = input.value;
+//     preview.innerHTML = marked.parse(markdownText);
+// });
 
 // Initialize with empty content
-preview.innerHTML = marked.parse('');
+// preview.innerHTML = marked.parse('');
 
 async function fetchSubmittedCount(email) {
     const url = `https://download.xn--xhq44jb2fzpc.com/upload/${email}/submitted.json`;
@@ -653,7 +680,7 @@ const section = document.getElementById('section').value;
 const wp = document.querySelector("input[name='wp']").value.trim();
 const wppassword = document.querySelector("input[name='wppassword']").value.trim();
 const note = document.querySelector("input[name='note']").value.trim();
-const markdownContent = document.getElementById('input').value.trim();
+const markdownContent = simplemde.value().trim();
 
 if (!confirm('请仔细检查后提交，多次提交无关内容将被禁止访问网站！')) {
     return; // 用户点击取消，终止提交
@@ -724,7 +751,8 @@ document.getElementById('SaveDraft').addEventListener('click', async () => {
     }
 
     if (confirm("确认保存草稿吗？如您之前有草稿内容，此操作会覆盖前一次的草稿内容。")) {
-        const draftContent = document.getElementById('input').value;
+        // 获取SimpleMDE编辑器中的内容
+        const draftContent = simplemde.value();
         const currentPostId = submitted + 1;
         const filePath = `upload/${curemail}/${currentPostId}/draft.json`;
 
@@ -739,6 +767,7 @@ document.getElementById('SaveDraft').addEventListener('click', async () => {
         }
     }
 });
+
 
 document.getElementById('LoadDraft').addEventListener('click', async () => {
     if (!s) {
@@ -760,8 +789,8 @@ document.getElementById('LoadDraft').addEventListener('click', async () => {
         } else {
             const draftData = await response.json();
             if (confirm("此操作会覆盖您当前的输入内容，确认加载草稿吗？")) {
-                document.getElementById('input').value = draftData.content;
-                preview.innerHTML = marked.parse(draftData.content);
+                // 设置SimpleMDE编辑器中的内容
+                simplemde.value(draftData.content);
                 alert("草稿已加载！");
             }
         }
@@ -770,3 +799,4 @@ document.getElementById('LoadDraft').addEventListener('click', async () => {
         alert("加载草稿失败，请稍后再试。");
     }
 });
+
