@@ -459,18 +459,67 @@
 <script src="https://download.xn--xhq44jb2fzpc.com/password/marked.min.js"></script>
 <script src="https://download.xn--xhq44jb2fzpc.com/password/pt.js?v=1.0.1"></script>
 <div id="1">
-  <form onsubmit="event.preventDefault(); a('1', document.getElementById('password-1').value, 'https:\/\/download.xn--xhq44jb2fzpc.com\/password\/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95\/data.json');">
-      <input type="password" id="password-1" placeholder="为本站投稿资源以获取查看此内容的密码。" class="text" style="width: 400px;">
-      <button type="submit">查看</button>
+  <form onsubmit="event.preventDefault(); a('1', document.getElementById('password-1').value, 'https:\/\/download.xn--xhq44jb2fzpc.com\/password\/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95\/data.json');" class="password-form">
+      <input type="password" id="password-1" placeholder="为本站投稿资源以获取查看此内容的密码。" class="text">
+      <button type="submit" class="submit-button">查看</button>
   </form>
   <div id="content-1" style="display: none;"></div>
 </div>
 
 
 <style>
-    .dark .text {
-  color: lightgray;
+     
+ 
+.password-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
+
+.password-form .text {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.password-form .submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.password-form .submit-button:hover {
+  background-color: #0056b3;
+}
+
+.password-form .submit-button:active {
+  transform: scale(0.95);
+}
+
+ 
+.dark .password-form .text {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark .password-form .submit-button {
+  background-color: #555;
+}
+
+.dark .password-form .submit-button:hover {
+  background-color: #333;
+}
+
+
 </style>
 
 <hr>
