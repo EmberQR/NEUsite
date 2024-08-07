@@ -1,0 +1,61 @@
+
+a.download-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(236, 188, 31);
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer;
+}
+
+a.download-link:hover {
+    background-color: #a17108;
+}
+
+a.download-link:active {
+    transform: scale(0.95);
+}
+
+.popup-title {
+    font-size: 18px;
+    font-weight: bold;
+    /* margin-bottom: 10px; */
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: popup 0.5s forwards;
+    z-index: 99;
+}
+
+@keyframes popup {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* 夜间模式样式 */
+.dark a.download-link {
+    background-color: rgb(196,196,197);
+    color: rgb(29,30,32);
+}
+
+.dark a.download-link:hover {
+    background-color: white;
+}
+
+.dark .popup {
+    background-color: #333;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
