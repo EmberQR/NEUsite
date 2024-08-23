@@ -1,0 +1,88 @@
+.card-section {
+    margin: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.view-more {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+/* .view-more:hover {
+    text-decoration: underline;
+} */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.summary {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+    max-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 最大展示三行文字 */
+    -webkit-box-orient: vertical;
+}
+
+/* 夜间模式样式 */
+.dark .card {
+    background-color: #2b2b2b;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.dark .summary {
+    color: #bbb;
+}
+
+.dark .card:hover {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* 悬浮白色阴影效果 */
+}
+
+.dark .view-more {
+    color: rgb(196,196,197);
+    text-decoration: none; /* 移除“查看更多”的下划线 */
+}
+
+/* .dark .view-more:hover {
+    text-decoration: underline;
+} */
