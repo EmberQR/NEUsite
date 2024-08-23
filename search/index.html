@@ -323,7 +323,9 @@ function autoFillSearchFromQuery() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    autoFillSearchFromQuery();
+    setTimeout(() => {
+        autoFillSearchFromQuery();
+    }, 200); 
 });
 
 
