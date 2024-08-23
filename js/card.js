@@ -2,8 +2,10 @@ function createCardSection(containerId, keyword) {
     fetch('/index.json')
         .then(response => response.json())
         .then(data => {
+            // 筛选文章，排除掉 permalink 包含 /card/ 的内容
             const filteredArticles = data.filter(article => 
-                article.title.includes(keyword) || article.content.includes(keyword)
+                (article.title.includes(keyword) || article.content.includes(keyword)) &&
+                !article.permalink.includes('/card/')
             ).slice(0, 6); // 最多显示6篇文章
 
             const articlesContainer = document.getElementById(containerId);
