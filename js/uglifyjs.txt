@@ -1,0 +1,7 @@
+假设你的 JavaScript 文件名为 submission.js，你可以使用以下命令来压缩和混淆它：
+
+uglifyjs submission.js -o submission.min.js -m -c
+
+-o script.min.js：指定输出文件名为 script.min.js。
+-m：启用变量名压缩（mangle），会将变量名压缩成更短的形式。
+-c：启用代码压缩（compress），会对代码进行优化以减少文件体积。
