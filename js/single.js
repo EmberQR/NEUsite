@@ -170,14 +170,14 @@ if (!email) {
 }
 
 const avatarUrl = `https://download.xn--xhq44jb2fzpc.com/user/${email}/avatar`;
-const defaultAvatarUrl = "https://download.xn--xhq44jb2fzpc.com/avatar/default.png";
+const defaultAvatarUrl = "https://download.xn--xhq44jb2fzpc.com/avatar/default.png?x-oss-process=style/avatar_comp";
 
 try {
     const response = await fetchNoCache(avatarUrl);
     const timestamp = new Date().getTime();
     if (response.ok) {
         // 保证头像实时更新
-        document.getElementById('avatar').src = `${avatarUrl}?timestamp=${timestamp}`;
+        document.getElementById('avatar').src = `${avatarUrl}?timestamp=${timestamp}?x-oss-process=style/avatar_comp`;
         document.getElementById('avatar').style.display = "block";
         console.log("Avatar updated.");
     } else if (response.status === 404) {
