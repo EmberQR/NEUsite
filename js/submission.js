@@ -3,59 +3,114 @@ let s = false;
 var curemail = "";
 var submitted = 0;
 
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-event.preventDefault();
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
-const hashedPassword = CryptoJS.SHA256(password).toString();
-const emailFilePath = 'user/email.json';
-const userPasswordFilePath = `user/${email}/p.json`;
-
-try {
-    let emailResponse = await client.get(emailFilePath);
-    let registeredEmails = JSON.parse(emailResponse.content).registeredEmails;
-
-    if (registeredEmails.includes(email)) {
-        let passwordResponse = await client.get(userPasswordFilePath);
-        let storedUser = JSON.parse(passwordResponse.content);
-
-        if (storedUser.h[0] === hashedPassword) {
-            s = true;
-            curemail = email;
-            document.getElementById('message').innerText = '登录成功！正在加载中...';
-            
-            setTimeout(initializeUserSession, 3000);
-
-        } else {
-            document.getElementById('message').innerText = '密码错误。';
-        }
-    } else {
-        if (confirm('此邮箱没有注册。是否注册？')) {
-            registeredEmails.push(email);
-            const updatedEmailJson = JSON.stringify({ registeredEmails: registeredEmails }, null, 2);
-            await client.put(emailFilePath, new Blob([updatedEmailJson], { type: 'application/json' }));
-
-            const newUserDetails = {
-                h: [hashedPassword],
-                nickname: "默认昵称",
-                hasAvatar: false
-            };
-            const newUserJson = JSON.stringify(newUserDetails, null, 2);
-            await client.put(userPasswordFilePath, new Blob([newUserJson], { type: 'application/json' }));
-
-            s = true; 
-            curemail = email;
-            document.getElementById('message').innerText = '注册并登录成功！正在加载中...';
-            
-            setTimeout(initializeUserSession, 3000);
-
-        }
+// 检查 Cookie 的函数
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
-} catch (error) {
-    console.error('Error:', error);
-    document.getElementById('message').innerText = '发生错误，请稍后重试。';
+    return null;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loggedIn = getCookie('loggedIn');
+    const email = getCookie('userEmail');  // 从 Cookie 中获取用户邮箱
+    if (loggedIn === 'true' && email) {
+        s = true;
+        curemail = email;  // 将用户邮箱赋值给 curemail 变量
+        initializeUserSession();
+    }
 });
+
+// 设置登录状态的 Cookie
+function setLoginCookie(email) {
+    const domain = window.location.hostname.includes('localhost') ? 'localhost' : `.${window.location.hostname.split('.').slice(-2).join('.')}`;
+    const expires = new Date(Date.now() + 20 * 60 * 1000).toUTCString();  // 20分钟
+    document.cookie = `loggedIn=true; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+    document.cookie = `userEmail=${email}; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+}
+
+
+function logout() {
+    // 清除登录状态的 Cookie
+    document.cookie = "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+    document.cookie = "userEmail=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+
+    // 清除其他相关的状态变量
+    s = false;
+    curemail = "";
+
+    // 显示退出登录的提示信息
+    // alert("您已成功退出登录。");
+
+    // 重定向到登录页面或首页
+    window.location.href = "/submission"; // 请根据实际情况修改重定向地址
+}
+
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const hashedPassword = CryptoJS.SHA256(password).toString();
+    const emailFilePath = 'user/email.json';
+    const userPasswordFilePath = `user/${email}/p.json`;
+
+    try {
+        let emailResponse = await client.get(emailFilePath);
+        let registeredEmails = JSON.parse(emailResponse.content).registeredEmails;
+
+        if (registeredEmails.includes(email)) {
+            let passwordResponse = await client.get(userPasswordFilePath);
+            let storedUser = JSON.parse(passwordResponse.content);
+
+            if (storedUser.h[0] === hashedPassword) {
+                s = true;
+                curemail = email;
+                document.getElementById('message').innerText = '登录成功！正在加载中...';
+
+                // 设置登录状态的 Cookie，作用于当前域名及其子域名
+                setLoginCookie(curemail);
+
+                setTimeout(initializeUserSession, 3000);
+
+            } else {
+                document.getElementById('message').innerText = '密码错误。';
+            }
+        } else {
+            if (confirm('此邮箱没有注册。是否注册？')) {
+                registeredEmails.push(email);
+                const updatedEmailJson = JSON.stringify({ registeredEmails: registeredEmails }, null, 2);
+                await client.put(emailFilePath, new Blob([updatedEmailJson], { type: 'application/json' }));
+
+                const newUserDetails = {
+                    h: [hashedPassword],
+                    nickname: "默认昵称",
+                    hasAvatar: false
+                };
+                const newUserJson = JSON.stringify(newUserDetails, null, 2);
+                await client.put(userPasswordFilePath, new Blob([newUserJson], { type: 'application/json' }));
+
+                s = true;
+                curemail = email;
+                document.getElementById('message').innerText = '注册并登录成功！正在加载中...';
+
+                // 设置登录状态的 Cookie，作用于当前域名及其子域名
+                setLoginCookie(curemail);
+
+                setTimeout(initializeUserSession, 3000);
+
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('message').innerText = '发生错误，请稍后重试。';
+    }
+});
+
 
 var simplemde = new SimpleMDE({ 
     element: document.getElementById("input"),
@@ -85,6 +140,7 @@ var simplemde = new SimpleMDE({
 });
 
 function initializeUserSession() {
+    document.getElementById('logout').style.display = 'block';
     document.getElementById('login').style.display = 'none';
     document.getElementById('navContainer').style.display = 'block';
     checkAndLoadAvatar();
