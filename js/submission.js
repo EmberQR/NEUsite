@@ -149,6 +149,33 @@ function initializeUserSession() {
     checkInvitedStatus(curemail);
     fetchSubmittedCount(curemail);
     document.getElementById('userEmail').innerText = curemail;
+    checkqv(curemail);
+}
+
+async function checkqv(curemail) {
+    try {
+        const response = await fetch(`https://download.xn--xhq44jb2fzpc.com/user/${curemail}/qv.json`);
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data === true) {
+                // 用户已经完成NEU校园网认证
+                console.log("NEU校园网认证已完成");
+            } else {
+                // 文件存在但内容不是true
+                alert("您未完成NEU校园网认证，请前往认证！");
+                window.location.href = "/qualification_verify";
+            }
+        } else {
+            // 文件不存在
+            alert("您未完成NEU校园网认证，请前往认证！");
+            window.location.href = "/qualification_verify";
+        }
+    } catch (error) {
+        console.error('检查NEU校园网认证状态时出错:', error);
+        alert("您未完成NEU校园网认证，请前往认证！");
+        window.location.href = "/qualification_verify";
+    }
 }
 
 
