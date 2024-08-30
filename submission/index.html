@@ -7,7 +7,8 @@
 <meta name="robots" content="index, follow">
 <title>NEU小站</title>
 <meta name="keywords" content="">
-<meta name="description" content="用户中心邮箱：密码：登录未注册的用户将自动注册。为确保您是东北大学学生或教职工，注册后需进行NEU校园网验证才能激活账户。我要投稿个人信息我的内容退出登录
+<meta name="description" content="用户中心邮箱：密码：登录未注册的用户将自动注册。为确保您是东北大学师生，注册后需进行NEU校园网验证才能激活账户。您未完成NEU校园网认证，请前往认证！
+前往验证退出登录我要投稿个人信息我的内容退出登录
 修改NicknameVV修改email@example.com
 请注意：由于浏览器缓存，修改头像或昵称后网站更新可能有延迟。
 基本信息 投稿时间： 内容标题： 您想要投稿的板块为：攻略指南资源共享说明：攻略指南板块主要用于提供学习和生活上的攻略信息或经验等，资源共享板块主要用于分享各类有价值的学习资源。
@@ -27,8 +28,7 @@
 markdown 基本语法教程 空格与换行 markdown 语法对于空格与换行并不敏感。您即使输入多个空格，markdown 也只会渲染一个空格。例如：
 这是一个 示例文本，含有多个空格。 效果：
 这是一个 示例文本，含有多个空格。
-类似地，多个换行也只会在实际效果中呈现一个换行，例如：
-这是第一行。 这是第二行。 效果：">
+类似地，多个换行也只会在实际效果中呈现一个换行，例如：">
 <meta name="author" content="
 
 
@@ -262,9 +262,102 @@ async function fetchNoCache(url) {
         </form>
         <div id="message"></div>
         <div class="center-text">
-            <br>未注册的用户将自动注册。为确保您是东北大学学生或教职工，注册后需进行NEU校园网验证才能激活账户。
+            <br>未注册的用户将自动注册。为确保您是东北大学师生，注册后需进行NEU校园网验证才能激活账户。
         </div>
     </div>
+<!-- 自定义模态框 -->
+<div id="customModal" style="display: none; position: fixed; z-index: 1000; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: white; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+    <p>您未完成NEU校园网认证，请前往认证！</p>
+    <button id="confirmButton">前往验证</button>
+    <button id="logoutButton">退出登录</button>
+</div>
+<div id="modalOverlay" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+<style>
+    /* 模态框容器 */
+    #customModal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        text-align: center;
+        color: #000000;
+    }
+
+    /* 背景遮罩层 */
+    #modalOverlay {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* 按钮的基础样式 */
+    #customModal button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    /* 确认按钮样式 */
+    #confirmButton {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+
+    /* 退出登录按钮样式 */
+    #logoutButton {
+        background-color: #dc3545;
+        color: #ffffff;
+    }
+
+    /* 鼠标悬停时的样式 */
+    #customModal button:hover {
+        transform: translateY(-3px);
+    }
+
+    /* 按钮点击时的样式 */
+    #customModal button:active {
+        transform: translateY(1px);
+    }
+
+    /* 暗黑模式下的模态框背景和文字颜色 */
+    .dark #customModal {
+        background-color: #333333 !important;
+        border-color: #444444 !important;
+        color: #ffffff !important;
+    }
+
+    /* 暗黑模式下的按钮样式 */
+    .dark #confirmButton {
+        background-color: #4444ff;
+    }
+
+    .dark #logoutButton {
+        background-color: #ff4444;
+    }
+
+    .dark #customModal button:hover {
+        transform: translateY(-3px);
+    }
+
+    .dark #customModal button:active {
+        transform: translateY(1px);
+    }
+</style>
 <script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-6.18.0.min.js"></script>
 <script src="https://download.xn--xhq44jb2fzpc.com/password/crypto-js.js"></script>
 <style>
@@ -892,7 +985,7 @@ async function fetchNoCache(url) {
 </style>
 <link rel="stylesheet" href="https://download.xn--xhq44jb2fzpc.com/upload/simplemde.min.css">
 <script src="https://download.xn--xhq44jb2fzpc.com/upload/simplemde.min.js?v=1.0.4"></script>
-<script src="https://download.xn--xhq44jb2fzpc.com/upload/submission.min.js?v=1.0.7"></script>
+<script src="https://download.xn--xhq44jb2fzpc.com/upload/submission.min.js?v=1.0.8"></script>
 <!-- <script src="/js/submission.js"></script> -->
 
 

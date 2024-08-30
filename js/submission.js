@@ -163,20 +163,35 @@ async function checkqv(curemail) {
                 console.log("NEU校园网认证已完成");
             } else {
                 // 文件存在但内容不是true
-                alert("您未完成NEU校园网认证，请前往认证！");
-                window.location.href = "/qualification_verify";
+                showCustomModal();
             }
         } else {
             // 文件不存在
-            alert("您未完成NEU校园网认证，请前往认证！");
-            window.location.href = "/qualification_verify";
+            showCustomModal();
         }
     } catch (error) {
         console.error('检查NEU校园网认证状态时出错:', error);
-        alert("您未完成NEU校园网认证，请前往认证！");
-        window.location.href = "/qualification_verify";
+        showCustomModal();
     }
 }
+
+function showCustomModal() {
+    const modal = document.getElementById('customModal');
+    const overlay = document.getElementById('modalOverlay');
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+
+    // 绑定确认按钮的点击事件
+    document.getElementById('confirmButton').addEventListener('click', () => {
+        window.location.href = "/qualification_verify";
+    });
+
+    // 绑定退出登录按钮的点击事件
+    document.getElementById('logoutButton').addEventListener('click', () => {
+        logout(); // 调用已定义的logout函数
+    });
+}
+
 
 
 async function f1() {
