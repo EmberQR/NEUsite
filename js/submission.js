@@ -35,20 +35,20 @@ function setLoginCookie(email) {
 
 
 function logout() {
+    const domain = window.location.hostname.includes('localhost') ? 'localhost' : `.${window.location.hostname.split('.').slice(-2).join('.')}`;
+
     // 清除登录状态的 Cookie
-    document.cookie = "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-    document.cookie = "userEmail=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+    document.cookie = `loggedIn=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+    document.cookie = `userEmail=; domain=${domain}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
 
     // 清除其他相关的状态变量
     s = false;
     curemail = "";
 
-    // 显示退出登录的提示信息
-    // alert("您已成功退出登录。");
-
     // 重定向到登录页面或首页
     window.location.href = "/submission"; // 请根据实际情况修改重定向地址
 }
+
 
 
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
