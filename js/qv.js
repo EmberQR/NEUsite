@@ -100,6 +100,7 @@ if (!loggedIn || !email) {
                         const userInfoBlob = new Blob([JSON.stringify(verificationData)], { type: 'application/json' });
                         try {
                             await client.put(`user/${email}/qv.json`, userInfoBlob);
+                            setVerifiedCookie(email);
                             alert("您已完成验证！");
                             window.location.href = "/submission";
                         } catch (err) {
@@ -114,4 +115,12 @@ if (!loggedIn || !email) {
                     alert("验证失败，请稍后重试。");
                 }
             });
+}
+
+function setVerifiedCookie(email) {
+    const domain = window.location.hostname.includes('localhost') ? 'localhost' : `.${window.location.hostname.split('.').slice(-2).join('.')}`;
+    const expires = new Date(Date.now() + 20 * 60 * 1000).toUTCString();  // 20分钟
+    document.cookie = `loggedIn=true; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+    document.cookie = `userEmail=${email}; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+    document.cookie = `verified=true; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
 }

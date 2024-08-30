@@ -26,12 +26,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // 设置登录状态的 Cookie
-function setLoginCookie(email) {
+async function setLoginCookie(email) {
     const domain = window.location.hostname.includes('localhost') ? 'localhost' : `.${window.location.hostname.split('.').slice(-2).join('.')}`;
     const expires = new Date(Date.now() + 20 * 60 * 1000).toUTCString();  // 20分钟
+
+    // 设置基本的登录状态和用户邮箱的Cookie
     document.cookie = `loggedIn=true; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
     document.cookie = `userEmail=${email}; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+
+    // 检查是否有验证文件，并且内容为true
+    const verificationFilePath = `https://download.xn--xhq44jb2fzpc.com/user/${email}/qv.json`;
+    try {
+        const response = await fetch(verificationFilePath);
+        if (response.ok) {
+            const data = await response.json();
+            if (data === true) {
+                // 设置verified为true的Cookie
+                document.cookie = `verified=true; domain=${domain}; path=/; expires=${expires}; SameSite=Lax`;
+            }
+        }
+    } catch (error) {
+        console.error('Error checking verification status:', error);
+    }
 }
+
 
 
 function logout() {
@@ -160,7 +178,7 @@ async function checkqv(curemail) {
             const data = await response.json();
             if (data === true) {
                 // 用户已经完成NEU校园网认证
-                console.log("NEU校园网认证已完成");
+                // console.log("NEU校园网认证已完成");
             } else {
                 // 文件存在但内容不是true
                 showCustomModal();
