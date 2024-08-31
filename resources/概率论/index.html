@@ -42,7 +42,7 @@
 <link rel="canonical" href="https://xn--xhq44jb2fzpc.com/resources/%E6%A6%82%E7%8E%87%E8%AE%BA/">
 
 <link rel="stylesheet" href="/css/custom.css"> 
-<script src="https://download.xn--xhq44jb2fzpc.com/upload/dl.js"></script>
+
 <link rel="stylesheet" href="/css/dl.css">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://xn--xhq44jb2fzpc.com/icons/favicon.ico">
@@ -467,17 +467,23 @@
 <p>此处收录了2014-2021学年的12套《概率论与数理统计》期末考试真题。</p>
 <p><strong>页面已提供在线预览，推荐您使用全屏预览。</strong></p>
 <p><strong>温馨提示</strong>：手机端可能无法正常预览PDF文件。请使用电脑浏览器访问。</p>
-<script src="https://download.xn--xhq44jb2fzpc.com/upload/dl.js?v=1.0.1"></script>
 <script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-6.20.0.min.js"></script>
+<script src="https://download.xn--xhq44jb2fzpc.com/upload/dl.min.js"></script>
 <script src="https://download.xn--xhq44jb2fzpc.com/password/crypto-js.js"></script>
-<script src="https://download.xn--xhq44jb2fzpc.com/download/downloadjm.js"></script>
 <a href="javascript:void(0);" id="download-1" class="download-link">点击下载</a>
 <div id="popup-download-1" class="popup">
     <div class="popup-title">下载安全保护中</div>
     <div class="popup-content">3秒后将开始下载...</div>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded",function(){f1().then(()=>{if(client){const t="download-1";const o="resources\/files\/概率论\/概率论与数理统计参考答案.pdf";const n="popup-"+t;let e=client.signatureUrl(o,{expires:20,response:{"content-disposition":"attachment"}});e=e.replace("emberimg.oss-cn-beijing.aliyuncs.com","download.xn--xhq44jb2fzpc.com");initializeDownloadLink(t,n,e)}else{console.error("Failed to initialize OSS client due to decryption error.")}}).catch(e=>{console.log("Error initializing OSS Client:",e)})});
+    document.addEventListener("DOMContentLoaded", function() {
+        const linkId = "download-1";
+        const objectKey = "resources\/files\/概率论\/概率论与数理统计参考答案.pdf";  
+        const popupId = "popup-" + linkId;
+
+        
+        initializeDownloadLink(linkId, popupId, objectKey);
+    });
 </script>
 
 <hr>

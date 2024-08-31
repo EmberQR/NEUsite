@@ -254,19 +254,26 @@ function showSubmission() {
     document.getElementById('submission-area').style.display = 'block';
     document.getElementById('myinfo').style.display = 'none';
     document.getElementById('mysubmission').style.display = 'none';
+    document.getElementById('mycoin').style.display = 'none';
+
 }
 
 function showMyInfo() {
     document.getElementById('submission-area').style.display = 'none';
     document.getElementById('myinfo').style.display = 'block';
     document.getElementById('mysubmission').style.display = 'none';
+    document.getElementById('mycoin').style.display = 'none';
+
 }
 
-function showMySubmissions() {
+function showMyContent() {
     document.getElementById('submission-area').style.display = 'none';
     document.getElementById('myinfo').style.display = 'none';
     fetchSubmissionData(curemail, submitted);
     document.getElementById('mysubmission').style.display = 'block';
+    document.getElementById('mycoin').style.display = 'block';
+    loadCoinSystem();
+
 }
 
 async function updateUserInfo() {
