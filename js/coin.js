@@ -145,7 +145,7 @@ function loadCoinSystem() {
                 });
                 const result = await response.json();
                 if (response.ok) {
-                    modalMessage.innerText = '验证码已发送，请查收。2分钟后可重新发送。';
+                    modalMessage.innerText = '验证码已发送。若未收到，2分钟后可重新发送。';
                     sessionStorage.setItem('phoneNumber', phoneNumber); // 保存手机号
                 } else {
                     modalMessage.innerText = `发送失败！请稍后再试。`;
@@ -160,68 +160,75 @@ function loadCoinSystem() {
         });
         
 
-        // 验证验证码事件
-        verifyBtn.addEventListener('click', async () => {
-            const phoneNumber = sessionStorage.getItem('phoneNumber'); // 从 sessionStorage 中获取手机号
-            const verificationCode = verificationCodeInput.value.trim();
+    // 验证验证码事件
+    verifyBtn.addEventListener('click', async () => {
+        const phoneNumber = sessionStorage.getItem('phoneNumber'); // 从 sessionStorage 中获取手机号
+        const verificationCode = verificationCodeInput.value.trim();
         
-            // 每次开始验证前清空消息文本
-            modalMessage.innerText = '';
-        
-            if (!verificationCode || !phoneNumber) {
-                modalMessage.innerText = '请输入手机号和验证码。';
-                return;
+        // 每次开始验证前清空消息文本
+        modalMessage.innerText = '';
+
+        if (!verificationCode || !phoneNumber) {
+            modalMessage.innerText = '请输入手机号和验证码。';
+            return;
+        }
+
+        try {
+            const response = await fetch('https://sms.xn--xhq44jb2fzpc.com/verify-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phoneNumber, verificationCode })
+            });
+            const result = await response.json();
+
+            // 检查响应状态和验证结果
+            if (response.ok && result.verified) {
+                modalMessage.innerText = '验证通过，请稍后……';
+
+                // 确保在正确验证后，不再处理错误消息
+                verifyBtn.disabled = true;  // 禁用按钮，防止多次点击
+                verificationCodeInput.disabled = true;  // 禁用输入框，防止再次输入
+
+                const phoneHash = CryptoJS.SHA256(phoneNumber).toString();
+                const phonesResponse = await fetchNoCache('https://download.xn--xhq44jb2fzpc.com/user/pn.json');
+                const phonesData = await phonesResponse.json();
+                phonesData.push(phoneHash);
+
+                await client.put('user/pn.json', new Blob([JSON.stringify(phonesData)], { type: 'application/json' }));
+
+                setTimeout(async () => {
+                    modal.style.display = 'none';
+                    
+                    // 初始化金币系统
+                    const initialData = {
+                        userEmail: curemail,
+                        coins: 20,
+                        transactions: [
+                            {
+                                type: 'credit',
+                                amount: 20,
+                                description: '初始金币奖励',
+                                date: getCurrentTime()
+                            }
+                        ]
+                    };
+                    const userInfoBlob = new Blob([JSON.stringify(true)], { type: 'application/json' });
+                    await client.put(`user/${curemail}/coin/verify.json`, userInfoBlob);
+
+                    const coinBlob = new Blob([JSON.stringify(initialData)], { type: 'application/json' });
+                    await client.put(`user/${curemail}/coin/list.json`, coinBlob);
+
+                    // 重新读取并渲染金币信息
+                    renderCoinContent(initialData);
+                }, 2000);
+            } else {
+                modalMessage.innerText = '验证码错误，请重新输入。';
             }
-        
-            try {
-                const response = await fetch('https://sms.xn--xhq44jb2fzpc.com/verify-code', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ phoneNumber, verificationCode })
-                });
-                const result = await response.json();
-                if (response.ok && result.verified) {
-                    modalMessage.innerText = '验证通过，请稍后……';
-        
-                    const phoneHash = CryptoJS.SHA256(phoneNumber).toString();
-                    const phonesResponse = await fetchNoCache('https://download.xn--xhq44jb2fzpc.com/user/pn.json');
-                    const phonesData = await phonesResponse.json();
-                    phonesData.push(phoneHash);
-        
-                    await client.put('user/pn.json', new Blob([JSON.stringify(phonesData)], { type: 'application/json' }));
-        
-                    setTimeout(async () => {
-                        modal.style.display = 'none';
-                        
-                        // 初始化金币系统
-                        const initialData = {
-                            userEmail: curemail,
-                            coins: 20,
-                            transactions: [
-                                {
-                                    type: 'credit',
-                                    amount: 20,
-                                    description: '初始金币奖励',
-                                    date: getCurrentTime()
-                                }
-                            ]
-                        };
-                        const userInfoBlob = new Blob([JSON.stringify(true)], { type: 'application/json' });
-                        await client.put(`user/${curemail}/coin/verify.json`, userInfoBlob);
-        
-                        const coinBlob = new Blob([JSON.stringify(initialData)], { type: 'application/json' });
-                        await client.put(`user/${curemail}/coin/list.json`, coinBlob);
-        
-                        // 重新读取并渲染金币信息
-                        renderCoinContent(initialData);
-                    }, 2000);
-                } else {
-                    modalMessage.innerText = '验证码错误，请重新输入。';
-                }
-            } catch (error) {
-                modalMessage.innerText = '验证时出错，请稍后重试。';
-            }
-        });
+        } catch (error) {
+            modalMessage.innerText = '验证时出错，请稍后重试。';
+        }
+    });
+
         
         
     }
