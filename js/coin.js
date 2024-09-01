@@ -1,4 +1,4 @@
-// 封装的加载金币系统函数
+// 封装的加载东币系统函数
 function loadCoinSystem() {
     // 获取当前时间并转换为北京时间
     function getCurrentTime() {
@@ -7,7 +7,7 @@ function loadCoinSystem() {
         return beijingTime.toISOString().replace('T', ' ').substring(0, 19); // 格式化时间
     }
 
-    // 初始化金币系统
+    // 初始化东币系统
     async function initializeCoinSystem() {
         try {
             // 检查 verify.json 文件是否存在且为 true
@@ -35,10 +35,10 @@ function loadCoinSystem() {
     
     
 
-    // 渲染金币内容
+    // 渲染东币内容
     function renderCoinContent(coinData) {
         const coinContent = document.getElementById('coin-content');
-        coinContent.innerHTML = `<p>当前金币数：${coinData.coins}</p>`;
+        coinContent.innerHTML = `<p>当前东币数：${coinData.coins}</p>`;
 
         const table = document.createElement('table');
         const headerRow = table.insertRow();
@@ -60,8 +60,8 @@ function loadCoinSystem() {
     function renderVerificationPrompt() {
         const coinContent = document.getElementById('coin-content');
         coinContent.innerHTML = `
-            <p>您需要进行手机验证以解锁金币系统。下载某些资源时会花费金币，而投稿审核通过后可以获得金币。</p>
-            <p><strong>请注意：</strong>由于下载同一份文件两次，从服务器流出的下行流量也会计算两次，因此当您多次下载同一个需要金币的资源时，金币也会多次扣除。<strong>我们建议您减少不必要的重复下载。</strong></p>
+            <p>您需要进行手机验证以解锁东币系统。下载某些资源时会花费东币，而投稿审核通过后可以获得东币。</p>
+            <p><strong>请注意：</strong>由于下载同一份文件两次，从服务器流出的下行流量也会计算两次，因此当您多次下载同一个需要东币的资源时，东币也会多次扣除。<strong>我们建议您减少不必要的重复下载。</strong></p>
             <button id="first-verify-btn">验证</button>
         `;
 
@@ -199,7 +199,7 @@ function loadCoinSystem() {
                 setTimeout(async () => {
                     modal.style.display = 'none';
                     
-                    // 初始化金币系统
+                    // 初始化东币系统
                     const initialData = {
                         userEmail: curemail,
                         coins: 20,
@@ -207,7 +207,7 @@ function loadCoinSystem() {
                             {
                                 type: 'credit',
                                 amount: 20,
-                                description: '初始金币奖励',
+                                description: '初始东币奖励',
                                 date: getCurrentTime()
                             }
                         ]
@@ -218,7 +218,7 @@ function loadCoinSystem() {
                     const coinBlob = new Blob([JSON.stringify(initialData)], { type: 'application/json' });
                     await client.put(`user/${curemail}/coin/list.json`, coinBlob);
 
-                    // 重新读取并渲染金币信息
+                    // 重新读取并渲染东币信息
                     renderCoinContent(initialData);
                 }, 2000);
             } else {
