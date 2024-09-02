@@ -34,17 +34,40 @@ function loadCoinSystem() {
     
     
     
+// 渲染东币内容并分页显示
+function renderCoinContent(coinData) {
+    const coinContent = document.getElementById('coin-content');
+    const itemsPerPage = 10; // 每页显示的记录数
+    let currentPage = 1; // 当前页码
 
-    // 渲染东币内容
-    function renderCoinContent(coinData) {
-        const coinContent = document.getElementById('coin-content');
-        coinContent.innerHTML = `<p>当前东币数：${coinData.coins}</p>`;
+    // 初始化内容
+    coinContent.innerHTML = `
+    <p><strong>当前东币数：${coinData.coins}</strong></p>
+    <p>下载某些资源时会花费东币，而投稿审核通过后可以获得东币。</p>
+    <p><strong>请注意：</strong>由于下载同一份文件两次，从服务器流出的下行流量也会计算两次，因此当您多次下载同一个需要东币的资源时，东币也会多次扣除。<strong>我们建议您减少不必要的重复下载。</strong></p>
+    <p><strong>每页显示10条东币记录，最近的记录将显示在最后。</strong></p>
+    `;
 
-        const table = document.createElement('table');
-        const headerRow = table.insertRow();
-        headerRow.innerHTML = `<th>时间</th><th>明细</th><th>操作</th>`;
+    // 渲染表格数据
+    function renderTable(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const transactions = coinData.transactions.slice(start, end);
 
-        coinData.transactions.forEach(transaction => {
+        let table = coinContent.querySelector('table');
+        
+        // 如果表格不存在，创建一个新的表格
+        if (!table) {
+            table = document.createElement('table');
+            const headerRow = table.insertRow();
+            headerRow.innerHTML = `<th>时间</th><th>明细</th><th>操作</th>`;
+            coinContent.appendChild(table);
+        } else {
+            // 如果表格存在，清空之前的内容（除标题外）
+            table.innerHTML = table.rows[0].innerHTML; // 保留标题行
+        }
+
+        transactions.forEach(transaction => {
             const row = table.insertRow();
             row.innerHTML = `
                 <td>${transaction.date}</td>
@@ -52,9 +75,50 @@ function loadCoinSystem() {
                 <td>${transaction.description}</td>
             `;
         });
-
-        coinContent.appendChild(table);
     }
+
+    // 渲染页码
+    function renderPagination() {
+        const totalPages = Math.ceil(coinData.transactions.length / itemsPerPage);
+        const pagination = document.createElement('div');
+        pagination.className = 'pagination';
+
+        // 页码前添加“页码：”
+        const pageLabel = document.createElement('span');
+        // pageLabel.textContent = '每页显示10条记录。';
+        // pageLabel.style.marginRight = '10px';
+        pagination.appendChild(pageLabel);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageLink = document.createElement('button');
+            pageLink.textContent = i;
+            pageLink.className = 'page-link';
+            pageLink.style.margin = '0 5px';
+            pageLink.style.fontWeight = (i === currentPage) ? 'bold' : 'normal'; // 当前页码加粗
+            pageLink.disabled = (i === currentPage);
+            pageLink.addEventListener('click', () => {
+                currentPage = i;
+                renderTable(currentPage);
+                renderPagination();
+            });
+            pagination.appendChild(pageLink);
+        }
+
+        // 清空并添加新的分页控件
+        const existingPagination = coinContent.querySelector('.pagination');
+        if (existingPagination) {
+            coinContent.removeChild(existingPagination);
+        }
+        coinContent.appendChild(pagination);
+    }
+
+    // 初始渲染
+    renderTable(currentPage);
+    renderPagination();
+}
+
+
+
 
     // 渲染验证提示
     function renderVerificationPrompt() {
@@ -207,11 +271,11 @@ function loadCoinSystem() {
                         // 初始化金币系统
                         const initialData = {
                             userEmail: curemail,
-                            coins: 20,
+                            coins: 50,
                             transactions: [
                                 {
                                     type: 'credit',
-                                    amount: 20,
+                                    amount: 50,
                                     description: '初始东币奖励',
                                     date: getCurrentTime()
                                 }

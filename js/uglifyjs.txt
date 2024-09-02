@@ -5,3 +5,6 @@ uglifyjs submission.js -o submission.min.js -m -c
 -o script.min.js：指定输出文件名为 script.min.js。
 -m：启用变量名压缩（mangle），会将变量名压缩成更短的形式。
 -c：启用代码压缩（compress），会对代码进行优化以减少文件体积。
+
+uglifyjs coin.js -o coin.min.js -m -c
+uglifyjs dlwithcoin.js -o dlwithcoin.min.js -m

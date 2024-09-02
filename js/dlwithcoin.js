@@ -58,10 +58,17 @@ function d2(e2, k2) {
 f1();
 
 document.addEventListener("DOMContentLoaded", function() {
-    const linkId = "{{ .Get "id" }}";
-    const objectKey = "{{ .Get "url" }}";  // 使用URL参数作为OSS对象的key
+    // const linkId = "{{ .Get "id" }}";
+    // const objectKey = "{{ .Get "url" }}";  // 使用URL参数作为OSS对象的key
+    // const popupId = "popup-" + linkId;
+    // const requiredCoins = {{ .Get "coin" | default 0 }}; // 获取需要扣除的金币数，默认为0
+    // const resourceTitle = "{{ .Get "title" }}"; // 获取资源标题
+
+    const linkId = "aaa";
+    const objectKey = "bbb";  // 使用URL参数作为OSS对象的key
     const popupId = "popup-" + linkId;
-    const requiredCoins = {{ .Get "coin" | default 0 }}; // 获取需要扣除的金币数，默认为0
+    const requiredCoins = 666; // 获取需要扣除的金币数，默认为0
+    const resourceTitle = "ccc"
 
     const checkAndDownload = async () => {
         const loggedIn = getCookie('loggedIn');
@@ -92,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         data.transactions.push({
                             type: "debit",
                             amount: requiredCoins,
-                            description: "下载资源",
+                            description: `下载资源：${resourceTitle}`,  // 使用资源标题
                             date: getCurrentTime()
                         });
                         const coinBlob = new Blob([JSON.stringify(data)], { type: 'application/json' });
