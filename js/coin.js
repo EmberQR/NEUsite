@@ -120,48 +120,62 @@ function renderCoinContent(coinData) {
 
 
 
-    // 渲染验证提示
-    function renderVerificationPrompt() {
-        const coinContent = document.getElementById('coin-content');
-        coinContent.innerHTML = `
-            <p>您需要进行手机验证以解锁东币系统。下载某些资源时会花费东币，而投稿审核通过后可以获得东币。</p>
-            <p><strong>请注意：</strong>由于下载同一份文件两次，从服务器流出的下行流量也会计算两次，因此当您多次下载同一个需要东币的资源时，东币也会多次扣除。<strong>我们建议您减少不必要的重复下载。</strong></p>
-            <button id="first-verify-btn">验证</button>
-        `;
+// 渲染验证提示
+function renderVerificationPrompt() {
+    const coinContent = document.getElementById('coin-content');
+    coinContent.innerHTML = `
+        <p>您需要进行手机验证以解锁东币系统。下载某些资源时会花费东币，而投稿审核通过后可以获得东币。</p>
+        <p><strong>请注意：</strong>由于下载同一份文件两次，从服务器流出的下行流量也会计算两次，因此当您多次下载同一个需要东币的资源时，东币也会多次扣除。<strong>我们建议您减少不必要的重复下载。</strong></p>
+        <button id="first-verify-btn">验证</button>
+    `;
 
-        // 按钮样式定义
-        const firstVerifyBtn = document.getElementById('first-verify-btn');
-        firstVerifyBtn.style.display = 'block';
-        firstVerifyBtn.style.margin = '0 auto';
-        firstVerifyBtn.style.padding = '10px 20px';
-        firstVerifyBtn.style.backgroundColor = '#007BFF';
+    // 按钮样式定义
+    const firstVerifyBtn = document.getElementById('first-verify-btn');
+    firstVerifyBtn.style.display = 'block';
+    firstVerifyBtn.style.margin = '0 auto';
+    firstVerifyBtn.style.padding = '10px 20px';
+    firstVerifyBtn.style.backgroundColor = '#007BFF';
+    firstVerifyBtn.style.color = '#fff';
+    firstVerifyBtn.style.border = 'none';
+    firstVerifyBtn.style.borderRadius = '4px';
+    firstVerifyBtn.style.cursor = 'pointer';
+    firstVerifyBtn.style.textAlign = 'center';
+
+    // 判断是否为夜间模式
+    const isDarkMode = document.body.classList.contains('dark');
+    if (isDarkMode) {
+        firstVerifyBtn.style.backgroundColor = '#444';
         firstVerifyBtn.style.color = '#fff';
-        firstVerifyBtn.style.border = 'none';
-        firstVerifyBtn.style.borderRadius = '4px';
-        firstVerifyBtn.style.cursor = 'pointer';
-        firstVerifyBtn.style.textAlign = 'center';
-
-        firstVerifyBtn.onmouseover = function () {
-            firstVerifyBtn.style.backgroundColor = '#0056b3';
-        };
-
-        firstVerifyBtn.onmouseout = function () {
-            firstVerifyBtn.style.backgroundColor = '#007BFF';
-        };
-
-        firstVerifyBtn.onmousedown = function () {
-            firstVerifyBtn.style.backgroundColor = '#003f7f';
-        };
-
-        // 夜间模式样式
-        if (document.body.classList.contains('dark')) {
-            firstVerifyBtn.style.backgroundColor = '#444';
-            firstVerifyBtn.style.color = '#fff';
-        }
-
-        // 点击验证按钮，弹出模态框
-        firstVerifyBtn.addEventListener('click', showVerificationModal);
     }
+
+    firstVerifyBtn.onmouseover = function () {
+        if (isDarkMode) {
+            firstVerifyBtn.style.backgroundColor = '#555';
+        } else {
+            firstVerifyBtn.style.backgroundColor = '#0056b3';
+        }
+    };
+
+    firstVerifyBtn.onmouseout = function () {
+        if (isDarkMode) {
+            firstVerifyBtn.style.backgroundColor = '#444';
+        } else {
+            firstVerifyBtn.style.backgroundColor = '#007BFF';
+        }
+    };
+
+    firstVerifyBtn.onmousedown = function () {
+        if (isDarkMode) {
+            firstVerifyBtn.style.backgroundColor = '#333';
+        } else {
+            firstVerifyBtn.style.backgroundColor = '#003f7f';
+        }
+    };
+
+    // 点击验证按钮，弹出模态框
+    firstVerifyBtn.addEventListener('click', showVerificationModal);
+}
+
 
     // 显示验证模态框
     function showVerificationModal() {

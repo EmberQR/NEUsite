@@ -73,3 +73,38 @@
     color: #fff;
     border: 1px solid #666;
 }
+
+/* 验证按钮普通模式样式 */
+#first-verify-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#first-verify-btn:hover {
+    background-color: #0056b3;
+}
+
+#first-verify-btn:active {
+    background-color: #003f7f;
+}
+
+/* 夜间模式样式 */
+.dark #first-verify-btn {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark #first-verify-btn:hover {
+    background-color: #555;
+}
+
+.dark #first-verify-btn:active {
+    background-color: #333;
+}
