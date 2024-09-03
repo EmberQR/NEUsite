@@ -56,14 +56,17 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const hashedPassword = CryptoJS.SHA256(password).toString();
+    const hashedEmail = CryptoJS.SHA256(email).toString();
     const emailFilePath = 'user/email.json';
+    const hashedEmailFilePath = 'user/he.json';
     const userPasswordFilePath = `user/${email}/p.json`;
 
     try {
-        let emailResponse = await client.get(emailFilePath);
-        let registeredEmails = JSON.parse(emailResponse.content).registeredEmails;
+        // 读取加密邮箱列表
+        let hashedEmailResponse = await client.get(hashedEmailFilePath);
+        let registeredHashedEmails = JSON.parse(hashedEmailResponse.content);
 
-        if (registeredEmails.includes(email)) {
+        if (registeredHashedEmails.registeredEmails.includes(hashedEmail)) {
             let passwordResponse = await client.get(userPasswordFilePath);
             let storedUser = JSON.parse(passwordResponse.content);
 
@@ -82,9 +85,18 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             }
         } else {
             if (confirm('此邮箱没有注册。是否注册？')) {
+                // 注册流程
+                let emailResponse = await client.get(emailFilePath);
+                let registeredEmails = JSON.parse(emailResponse.content).registeredEmails;
                 registeredEmails.push(email);
+
                 const updatedEmailJson = JSON.stringify({ registeredEmails: registeredEmails }, null, 2);
                 await client.put(emailFilePath, new Blob([updatedEmailJson], { type: 'application/json' }));
+
+                // 更新加密邮箱列表
+                registeredHashedEmails.registeredEmails.push(hashedEmail);
+                const updatedHashedEmailJson = JSON.stringify(registeredHashedEmails, null, 2);
+                await client.put(hashedEmailFilePath, new Blob([updatedHashedEmailJson], { type: 'application/json' }));
 
                 const newUserDetails = {
                     h: [hashedPassword],
@@ -102,7 +114,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 setLoginCookie(curemail);
 
                 setTimeout(initializeUserSession, 3000);
-
             }
         }
     } catch (error) {
@@ -110,6 +121,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         document.getElementById('message').innerText = '发生错误，请稍后重试。';
     }
 });
+
+
 
 
 var simplemde = new SimpleMDE({ 
