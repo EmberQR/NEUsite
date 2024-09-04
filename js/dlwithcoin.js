@@ -61,13 +61,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // const linkId = "{{ .Get "id" }}";
     // const objectKey = "{{ .Get "url" }}";  // 使用URL参数作为OSS对象的key
     // const popupId = "popup-" + linkId;
-    // const requiredCoins = {{ .Get "coin" | default 0 }}; // 获取需要扣除的金币数，默认为0
+    // const requiredCoins = {{ .Get "coin" | default 0 }}; // 获取需要扣除的东币数，默认为0
     // const resourceTitle = "{{ .Get "title" }}"; // 获取资源标题
 
     const linkId = "aaa";
     const objectKey = "bbb";  // 使用URL参数作为OSS对象的key
     const popupId = "popup-" + linkId;
-    const requiredCoins = 666; // 获取需要扣除的金币数，默认为0
+    const requiredCoins = 666; // 获取需要扣除的东币数，默认为0
     const resourceTitle = "ccc"
 
     const checkAndDownload = async () => {
@@ -85,16 +85,16 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 const response = await fetchNoCache(coinListUrl);
                 if (!response.ok) {
-                    alert("您还未激活金币系统，请前往激活！");
+                    alert("您还未激活东币系统，请前往激活！");
                     window.location.href = "/submission";
                     return;
                 }
                 const data = await response.json();
                 if (data.coins < requiredCoins) {
-                    alert(`您的金币数量不够！当前资源要求金币数：${requiredCoins}；您的金币数：${data.coins}。`);
+                    alert(`您的东币数量不够！当前资源要求东币数：${requiredCoins}；您的东币数：${data.coins}。`);
                     return;
                 } else {
-                    if (confirm(`当前下载操作花费：${requiredCoins}金币；您的金币：${data.coins}。是否继续？`)) {
+                    if (confirm(`当前下载操作花费：${requiredCoins}东币；您的东币：${data.coins}。是否继续？`)) {
                         data.coins -= requiredCoins;
                         data.transactions.push({
                             type: "debit",
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("无法处理您的请求，请稍后重试。");
             }
         } else {
-            // 如果不需要金币，直接开始下载
+            // 如果不需要东币，直接开始下载
             startDownload(linkId, popupId, objectKey);
         }
     };
