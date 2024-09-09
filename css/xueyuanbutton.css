@@ -1,0 +1,56 @@
+.button-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .hover-button {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff0856;
+    color: rgb(245,245,245);
+    font-size: 1.2rem;
+    text-decoration: none;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    border-radius: 10px; /* 圆角矩形 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+  }
+  
+  .hover-button:hover {
+    /* background-color: #3a08ff; */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* 悬停时的阴影变化 */
+  }
+  
+  .hover-button .hover-text {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明遮挡层 */
+    color: rgb(245,245,245);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: left 0.3s ease;
+  }
+  
+  .hover-button:hover .hover-text {
+    left: 0; /* 悬停时遮挡层滑入 */
+  }
+  
+  .dark .hover-button {
+    background-color: rgb(218,218,219) !important;
+    color: rgb(29,30,32) !important;
+  }
+  
+  .dark .hover-button:hover {
+    background-color: #555 !important; 
+    box-shadow: 0 4px 6px rgba(247, 246, 246) !important; /* 按钮阴影 */
+  }
+  
+  .dark .hover-button .hover-text {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* 夜间模式的半透明遮挡层 */
+  }

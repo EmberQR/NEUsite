@@ -1,0 +1,54 @@
+        /* 导航栏样式 */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .nav-tabs button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 1.2rem;
+            transition: all 0.3s ease; /* 为按钮添加平滑的过渡效果 */
+        }
+
+        .nav-tabs button.active {
+            border-bottom: 2px solid #007bff;
+            transform: translateY(-5px); /* 添加滑动动画 */
+        }
+
+        /* 夜间模式 */
+        .dark {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark .nav-tabs button {
+            color: #e0e0e0;
+        }
+
+        .dark .nav-tabs button.active {
+            border-bottom-color: #f5f8fa;
+        }
+
+        /* 动画效果 */
+        .fade {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .fade-hide {
+            opacity: 0;
+        }
+
+        .fade-show {
+            opacity: 1;
+        }
+
+        /* 分割线和标题之间的间距 */
+        hr {
+            margin-top: 30px;
+        }
