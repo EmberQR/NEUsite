@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成推免页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        textarea {
+            resize: none; /* 禁止缩放 */
+            font-family: Arial, sans-serif;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>生成推免页面</h1>
+    <form id="myForm">
+
+        <label for="level">姓名：</label>
+        <input type="text" id="nickname" name="nickname" value="李*明">
+
+        <label for="level">层次：</label>
+        <input type="text" id="level" name="level" value="直博生">
+        
+        <label for="unit">单位：</label>
+        <input type="text" id="unit" name="unit" value="江苏省涟水中等专业学校">
+        
+        <label for="department">院系：</label>
+        <input type="text" id="department" name="department" value="服装设计系">
+        
+        <label for="major">专业：</label>
+        <input type="text" id="major" name="major" value="基础数学（070101）">
+        
+        <label for="studyMethod">学习方式：</label>
+        <input type="text" id="studyMethod" name="studyMethod" value="全日制">
+        
+        <label for="researchDirection">研究方向：</label>
+        <input type="text" id="researchDirection" name="researchDirection" value="不区分研究方向">
+        
+        <label for="tutor">导师：</label>
+        <input type="text" id="tutor" name="tutor" value="姜萍">
+        
+        <label for="planType">专项计划类型：</label>
+        <input type="text" id="planType" name="planType" value="普通计划">
+        
+        <label for="employmentType">就业类型：</label>
+        <input type="text" id="employmentType" name="employmentType" value="非定向就业">
+        
+        <label for="admissionOffice">招生办名称：</label>
+        <input type="text" id="admissionOffice" name="admissionOffice" value="江苏省涟水中等专业学校">
+        
+        <label for="sendTime">发送时间：</label>
+        <input type="text" id="sendTime" name="sendTime" value="2024-09-29 09:57">
+        
+        <label for="sendContent">发送内容：</label>
+        <textarea id="sendContent" name="sendContent">你已被我校录取，请在半小时内在研招网确认待录取通知，过时将视为自动放弃，我们将撤销待录取通知。</textarea>
+        
+        <label for="status">状态：</label>
+        <select id="status" name="status">
+            <option value="1">接受</option>
+            <option value="0">拒绝</option>
+        </select>
+
+        <label for="opTime">接受或拒绝时间：</label>
+        <input type="text" id="opTime" name="opTime" value="9月29日 09:59">
+        
+        <button type="button" onclick="generatePage()">生成页面</button>
+    </form>
+</div>
+
+<script>
+    function generatePage() {
+        // 获取表单内容
+        const formData = {
+            nickname: document.getElementById('nickname').value,
+            level: document.getElementById('level').value,
+            unit: document.getElementById('unit').value,
+            department: document.getElementById('department').value,
+            major: document.getElementById('major').value,
+            studyMethod: document.getElementById('studyMethod').value,
+            researchDirection: document.getElementById('researchDirection').value,
+            tutor: document.getElementById('tutor').value,
+            planType: document.getElementById('planType').value,
+            employmentType: document.getElementById('employmentType').value,
+            admissionOffice: document.getElementById('admissionOffice').value,
+            sendTime: document.getElementById('sendTime').value,
+            sendContent: document.getElementById('sendContent').value,
+            status: document.getElementById('status').value,
+            opTime: document.getElementById('opTime').value,
+        };
+
+        // 将表单内容转换为 JSON 并进行 Base64 编码
+        const jsonStr = JSON.stringify(formData);
+        const encodedData = toBase64Unicode(jsonStr);
+
+        // 跳转到目标页面并传递数据
+        window.open('全国推荐免试攻读研究生（免初试、转段）信息公开管理服务系统.html?data=' + encodeURIComponent(encodedData), '_blank');
+
+        // 用于安全编码Unicode的Base64编码函数
+        function toBase64Unicode(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+        }
+
+
+    }
+</script>
+
+</body>
+</html>

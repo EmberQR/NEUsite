@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+/**
+title: base layout for 研招推免招生  
+author: os
+label: IE6,IE7,IE8-IE11,FF等全部常规浏览器
+descript: 本框架实现：在顶部固定（static）header，可用于用户ui的兼容框架。 特点：footer永远在底部，即使content内容较短；请注意docytpe的写法。
+**/
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+body {
+	width: 100%;
+	border: 0;
+	min-width: 1000px;
+	text-align: center;
+	background-color:#fff;
+}
+.head-wrapper {
+	text-align: left;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 9;
+	height: 80px;
+	display: none;
+}
+.main-wrapper {
+	text-align: left;
+	position: relative;
+	min-height: 100%;
+
+}
+.foot-wrapper {
+	clear: both;
+	position: relative;
+	z-index: 10;
+	text-align: left;
+	height: 40px;
+	margin-top: -40px;
+	overflow: hidden;
+}
+.container {
+	padding-bottom: 40px;
+}
+/**ie6 修复**/
+* html, * html body {
+	background-image: url(about:blank);
+	background-attachment: fixed;
+} /* 修正IE6振动bug */
+* html, * html .main-wrapper {
+	height: 100%;
+}
+/*wrapper styles */
+.fixed .main-wrapper, .fixed .foot-wrapper {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.liquid .main-wrapper, .liquid .foot-wrapper {
+	width: 100%;
+}
+
+/**
+title: sub layout for 研招推免招生  
+author: os
+label: 兼容IE6,IE7,IE8-IE11,FF等全部常规浏览器
+descript: CSS实现两侧同一高度。
+**/
+
+.header{ clear:both;}	
+/* column container */
+	.colmask {
+		position:relative;		/* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+	    clear:both;
+	    float:left;
+        width:100%;			/* width of whole page */
+		overflow:hidden;
+		/* This chops off any overhanging divs */
+	}
+	/* 2 column left menu settings */
+	.leftbg { }
+	.rightbg{ background:#fff;}
+    .colright {
+        float:left;
+        width:200%;
+		position:relative;
+		left:200px;
+    }
+     .col1wrap {
+	    float:right;
+	    width:50%;
+	    position:relative;
+	    right:200px;
+	    padding-bottom:1em;
+	}
+	 .col1 {
+        margin:0 15px 0 200px;
+	    position:relative;
+	    right:100%;
+	    overflow:hidden;
+	}
+     .col2 {
+        float:left;
+        width:170px;
+        position:relative;
+        right:200px;
+    }
+	
+	
+
