@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html version="4"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="全国推荐免试攻读研究生（免初试、转段）信息公开管理服务系统_files/js/purify.min.js"></script>
+
         
         <title>全国推荐免试攻读研究生（免初试、转段）信息公开管理服务系统</title>
         <link rel="shortcut icon" href="https://t1.chei.com.cn/yz/favicon.ico">
@@ -655,7 +657,7 @@ a.tip-important:hover,a.tip-success:hover {
                 // 解码并解析 JSON 数据 (支持 Unicode)
                 const decodedData = fromBase64Unicode(encodedData);
                 const formData = JSON.parse(decodedData);
-
+                
                 document.querySelector('#nicknamelink').innerText = formData.nickname;
                 document.getElementById('level').innerText = formData.level;
                 document.getElementById('unit').innerText = formData.unit;
@@ -666,24 +668,28 @@ a.tip-important:hover,a.tip-success:hover {
                 document.getElementById('tutor').innerText = formData.tutor;
                 document.getElementById('planType').innerText = formData.planType;
                 document.getElementById('employmentType').innerText = formData.employmentType;
-                document.getElementById('infoText').innerHTML = formData.admissionOffice + ' ' + formData.sendTime;
-                document.getElementById('admission-notice').innerHTML = formData.sendContent;
+
+                // 使用 DOMPurify 来净化需要插入 innerHTML 的地方
+                document.getElementById('infoText').innerHTML = DOMPurify.sanitize(formData.admissionOffice + ' ' + formData.sendTime);
+                document.getElementById('admission-notice').innerHTML = DOMPurify.sanitize(formData.sendContent);
 
                 // 获取元素
                 const operationInfo = document.getElementById('operation-info');
 
-                // 判断 status 的值，动态修改内容
+                // 判断 status 的值，动态修改内容，使用 DOMPurify 对 HTML 进行净化
                 if (formData.status === "1") {
-                    operationInfo.innerHTML = '<i class="ui-tiptext-icon iconfont" title="接受"></i> 你于' + formData.opTime + '接受了' + formData.unit + '的待录取通知';
+                    operationInfo.innerHTML = DOMPurify.sanitize(
+                        '<i class="ui-tiptext-icon iconfont" title="接受"></i> 你于' + formData.opTime + '接受了' + formData.unit + '的待录取通知'
+                    );
                     operationInfo.style.color = '#007F00';  // 绿色表示接受
                 } else if (formData.status === "0") {
-                    operationInfo.innerHTML = '<i class="ui-tiptext-icon iconfont" title="拒绝"></i> 你于' + formData.opTime + '拒绝了' + formData.unit + '的待录取通知';
+                    operationInfo.innerHTML = DOMPurify.sanitize(
+                        '<i class="ui-tiptext-icon iconfont" title="拒绝"></i> 你于' + formData.opTime + '拒绝了' + formData.unit + '的待录取通知'
+                    );
                     operationInfo.style.color = '#f03b4e';  // 红色表示拒绝
                 }
-
-
-            } else {
             }
+
 
 
         </script>
