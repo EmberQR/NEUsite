@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【学业规划】绩点计算器插件推荐和使用指南 | NEU小站</title>
+<meta name="keywords" content="">
+<meta name="description" content=" 标签：#GPA #学业规划 #绩点计算器 #浏览器插件
+简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 edge&rdquo; 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 Chrome&rdquo; 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加到 Firefox&rdquo; 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 &ldquo;安装此脚本&rdquo; 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。
+进入界面后如果发生绩点变动会弹窗提醒
+新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。
+计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。
+绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩
+学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 ">
+<meta name="author" content="
+
+
+
+  
+  
+  
+  
+    
+    
+    
+        
+            
+            V
+        
+    
+    
+        
+            
+            V
+        
+    
+    
+        
+        
+    
+  ">
+<link rel="canonical" href="https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/">
+
+<link rel="stylesheet" href="/css/custom.css"> 
+
+<link rel="stylesheet" href="/css/dl.css">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://xn--xhq44jb2fzpc.com/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://xn--xhq44jb2fzpc.com/icons/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://xn--xhq44jb2fzpc.com/icons/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://xn--xhq44jb2fzpc.com/icons/apple-touch-icon.png">
+<link rel="mask-icon" href="https://xn--xhq44jb2fzpc.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="【学业规划】绩点计算器插件推荐和使用指南" />
+<meta property="og:description" content=" 标签：#GPA #学业规划 #绩点计算器 #浏览器插件
+简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 edge&rdquo; 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 Chrome&rdquo; 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加到 Firefox&rdquo; 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 &ldquo;安装此脚本&rdquo; 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。
+进入界面后如果发生绩点变动会弹窗提醒
+新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。
+计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。
+绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩
+学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/" /><meta property="article:section" content="strategy" />
+<meta property="article:published_time" content="2024-10-08T10:34:41+08:00" />
+<meta property="article:modified_time" content="2024-10-08T10:34:41+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【学业规划】绩点计算器插件推荐和使用指南"/>
+<meta name="twitter:description" content=" 标签：#GPA #学业规划 #绩点计算器 #浏览器插件
+简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 edge&rdquo; 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 Chrome&rdquo; 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加到 Firefox&rdquo; 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 &ldquo;安装此脚本&rdquo; 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。
+进入界面后如果发生绩点变动会弹窗提醒
+新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。
+计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。
+绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩
+学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 "/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "攻略指南",
+      "item": "https://xn--xhq44jb2fzpc.com/strategy/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "【学业规划】绩点计算器插件推荐和使用指南",
+      "item": "https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【学业规划】绩点计算器插件推荐和使用指南",
+  "name": "【学业规划】绩点计算器插件推荐和使用指南",
+  "description": " 标签：#GPA #学业规划 #绩点计算器 #浏览器插件\n简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 \u0026ldquo;Tampermonkey\u0026rdquo;，然后点击 \u0026ldquo;添加至 edge\u0026rdquo; 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 \u0026ldquo;Tampermonkey\u0026rdquo;，然后点击 \u0026ldquo;添加至 Chrome\u0026rdquo; 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 \u0026ldquo;Tampermonkey\u0026rdquo;，然后点击 \u0026ldquo;添加到 Firefox\u0026rdquo; 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 \u0026ldquo;安装此脚本\u0026rdquo; 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。\n进入界面后如果发生绩点变动会弹窗提醒\n新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。\n计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。\n绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩\n学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 ",
+  "keywords": [
+    
+  ],
+  "articleBody": " 标签：#GPA #学业规划 #绩点计算器 #浏览器插件\n简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 “Tampermonkey”，然后点击 “添加至 edge” 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 “Tampermonkey”，然后点击 “添加至 Chrome” 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 “Tampermonkey”，然后点击 “添加到 Firefox” 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 “安装此脚本” 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。\n进入界面后如果发生绩点变动会弹窗提醒\n新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。\n计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。\n绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩\n学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 ",
+  "wordCount" : "73",
+  "inLanguage": "en",
+  "datePublished": "2024-10-08T10:34:41+08:00",
+  "dateModified": "2024-10-08T10:34:41+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NEU小站",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://xn--xhq44jb2fzpc.com/icons/favicon.ico"
+    }
+  }
+}
+</script>
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://xn--xhq44jb2fzpc.com/" accesskey="h" title="NEU小站 (Alt + H)">NEU小站</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/" title="主页">
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://course.%e4%b8%9c%e5%8c%97%e5%a4%a7%e5%ad%a6.com" title="课程评分"target="_blank">
+                    <span>课程评分</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/strategy/" title="攻略指南">
+                    <span>攻略指南</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/rapidlinks/%E5%BF%AB%E9%80%9F%E9%93%BE%E6%8E%A5/" title="快速链接">
+                    <span>快速链接</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/resources/" title="资源共享">
+                    <span>资源共享</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://f.wps.cn/g/QuaZnovL/" title="意见反馈"target="_blank">
+                    <span>意见反馈</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/submission/" title="用户中心">
+                    <span>用户中心</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/log/" title="更新日志">
+                    <span>更新日志</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://xn--xhq44jb2fzpc.com/intro/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main">
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  
+  <style>
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        var sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.style.display = 'none';
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent" style="display: inline;">
+      【学业规划】绩点计算器插件推荐和使用指南
+      
+    </h1>
+    
+    
+    
+    <span class="entry-hint" title="优质资源" style="background-color: rgb(255, 196, 0); color: white; font-weight: bold; padding: 5px 10px; border-radius: 5px; display: inline-block; vertical-align: 6px; margin-left: 10px;">
+      优质
+    </span>
+    
+    
+    
+    <div class="post-meta">
+      <span title='2024-10-08 10:34:41 +0800 CST'>2024年10月8日</span>
+<div style="display: flex; align-items: center; margin-top: 10px">
+  <span style="margin-right: 10px; margin-top: 10px">发布者：</span>
+
+
+<style>
+   
+  .post-author-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    position: relative;  
+  }
+  .post-author {
+    font-weight: bold;
+    color: black;
+    font-size: 1.1em;
+    margin-left: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .dark .post-author {
+    color: #d3d3d3;
+  }
+  .verified-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+     
+    transform: translateY(2px);
+  }
+  .verified-svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .verified-text {
+    fill: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    text-anchor: middle;
+    font-weight: normal;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-top: 10px;
+  }
+  .dark .avatar {
+    box-shadow: 0 0 10px rgba(249, 248, 248, 0.5);
+  }
+  .tooltip {
+    position: absolute;
+    left: 55%;  
+    transform: translateX(-45%) translateY(-10px);   
+    margin-top: 10px;  
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;  
+    width: 250px;  
+    height: auto;  
+    z-index: 100;
+    top: 100%;  
+    margin-left: 40px;
+}
+
+.tooltip.show {
+    opacity: 1;
+    transform: translateX(-45%) translateY(0);  
+}
+
+
+.tooltip-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.tooltip-content {
+    font-size: 14px;
+    color: #333;
+}
+
+ 
+.dark .tooltip {
+    background-color: #333;
+    color: #f2f2f2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark .tooltip-title {
+    color: #fff;
+}
+
+.dark .tooltip-content {
+    color: #ddd;
+}
+
+  
+  </style>
+  
+  
+  
+  <div class="post-author-wrapper">
+    <img src="https://download.xn--xhq44jb2fzpc.com/avatar/default.png" alt="" class="avatar" id="avatar" style="display: none">
+    <span class="post-author" id="post-author"></span>
+    <span class="icon invited-icon" id="invited-icon" style="display: none; margin-left: 8px; margin-top: 10px;">
+        <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+            <circle cx="12" cy="12" r="12" fill="purple"/>
+            <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="white" font-size="12px">V</text>
+        </svg>
+    </span>
+    <span class="icon verified-icon" id="verified-icon" style="display: none; margin-left: 8px; margin-top: 6px;">
+        <svg class="verified-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+            <circle cx="12" cy="12" r="12" fill="gold"/>
+            <text class="verified-text" x="12" y="16" dy="0.12em" text-anchor="middle" fill="black" font-size="12px">V</text>
+        </svg>
+    </span>
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title" id="tooltip-title"></div>
+        <div class="tooltip-content" id="tooltip-content"></div>
+    </div>
+  </div>
+</div>
+
+      
+      
+
+      
+
+    </div>
+    
+  </header>
+  
+   
+  <div class="single-container">
+    <aside class="sidebar">
+      <nav class="toc">
+        <h2>快速导航</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#简介">简介</a></li>
+            <li><a href="#安装">安装</a></li>
+            <li><a href="#功能介绍">功能介绍</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </nav>
+    </aside>
+    <main class="post-content">
+      
+      
+          <blockquote>
+<p>标签：#GPA #学业规划 #绩点计算器 #浏览器插件</p>
+</blockquote>
+<h3 id="简介">简介<a hidden class="anchor" aria-hidden="true" href="#简介">#</a></h3>
+<ul>
+<li>你是否正在寻找一款可以帮助你<strong>提前预测GPA、规划学习</strong>的工具？</li>
+<li>作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。</li>
+<li>我们的脚本还特别设计了一个 <strong>“模拟绩点”</strong> 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。</li>
+<li>此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。</li>
+<li>你的所有数据和信息都只在你的本地浏览器中处理和保存，<strong>我们无法获取任何个人信息</strong>。你可以安心使用，无需担心隐私问题。</li>
+</ul>
+<h3 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h3>
+<ol>
+<li><strong>在浏览器中安装 Tampermonkey 扩展程序：</strong>
+<ul>
+<li>edge 用户请访问 <a href="https://microsoftedge.microsoft.com/addons/Microsoft-Edge-Extensions-Home" target="_blank">edge 网上应用店</a>搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 edge&rdquo; 安装。</li>
+<li>Chrome 用户请访问 <a href="https://ssl.gstatic.com/chrome/webstore/intl/zh-CN/gallery_tos.html" target="_blank">Google Chrome 网上应用店</a>搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加至 Chrome&rdquo; 安装。</li>
+<li>Firefox 用户请访问 Firefox 附加组件商店搜索 &ldquo;Tampermonkey&rdquo;，然后点击 &ldquo;添加到 Firefox&rdquo; 安装。
+<ul>
+<li><strong>火狐浏览器支持安卓使用本脚本</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>安装脚本：</strong>
+<ul>
+<li>访问脚本页面：<a href="https://greasyfork.org/zh-CN/scripts/471378" target="_blank">东北大学绩点小助手</a></li>
+<li>点击页面的 &ldquo;安装此脚本&rdquo; 按钮。</li>
+</ul>
+</li>
+<li><strong>使用脚本：</strong>
+<ul>
+<li>安装和配置完成后，脚本会在东北大学教务系统的页面中生效。</li>
+<li>打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面</li>
+</ul>
+</li>
+</ol>
+<h3 id="功能介绍">功能介绍<a hidden class="anchor" aria-hidden="true" href="#功能介绍">#</a></h3>
+<ol>
+<li><strong>快捷访问与绩点变动提醒</strong>
+<ul>
+<li>在 <a href="https://eone.neu.edu.cn/" target="_blank">东北大学一网通办</a> 和 <a href="https://webvpn.neu.edu.cn/" target="_blank">东北大学webvpn</a> 您可以通过右下角的悬浮窗快速进入绩点界面。<br>
+<img src="https://download.xn--xhq44jb2fzpc.com/upload/guo.yunzhe@outlook.com/2/postimg/1728313653858.png" alt="自定义图片文字" width="100"></li>
+<li>进入界面后如果发生绩点变动会弹窗提醒<br>
+<img src="https://download.xn--xhq44jb2fzpc.com/upload/guo.yunzhe@outlook.com/2/postimg/1728353121821.png" alt="自定义图片文字" width="300"></li>
+</ul>
+</li>
+<li><strong>新课绩点估计</strong>
+<ul>
+<li>在界面左上方<strong>输入</strong>新课学分，预估绩点，点击<strong>筛选/预测计算按钮</strong>，即可查看新课对绩点的影响。<br>
+<img src="https://download.xn--xhq44jb2fzpc.com/upload/guo.yunzhe@outlook.com/2/postimg/1728353240443.png" alt="自定义图片文字" width="1000"></li>
+</ul>
+</li>
+<li><strong>计算学年成绩</strong>
+<ul>
+<li>在界面左上方<strong>输入</strong>学年（如：2023-2024）或学期（如：2023-2024 秋季），点击<strong>筛选/预测计算按钮</strong>，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。<br>
+<img src="https://download.xn--xhq44jb2fzpc.com/upload/guo.yunzhe@outlook.com/2/postimg/1728353484665.png" alt="自定义图片文字" width="1000"></li>
+</ul>
+</li>
+<li><strong>绩点模拟计算</strong>
+<ul>
+<li>在界面右上方点击<strong>绩点模拟按钮</strong>，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击<strong>绩点模拟计算按钮</strong>您就可以查看模拟绩点，完成后点击<strong>结束模拟</strong>恢复原界面。
+<ul>
+<li>结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩<br>
+<img src="https://download.xn--xhq44jb2fzpc.com/upload/guo.yunzhe@outlook.com/2/postimg/1728353865970.png" alt="自定义图片文字" width="1000"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>学业预警界面</strong>
+<ul>
+<li>点击<strong>学业预警</strong>按钮可以进入学业预警界面。</li>
+<li>如果发生<strong>转专业等变动</strong>，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角<strong>清除记录按键</strong>。</li>
+<li>主界面绩点和本界面绩点一致时，<strong>弹窗提醒绩点计算错误</strong>，说明脚本计算绩点和教务系统绩点不一致，请手动计算。
+<ul>
+<li>如果是脚本bug可以进<a href="https://greasyfork.org/zh-CN/scripts/471378-%E4%B8%9C%E5%8C%97%E5%A4%A7%E5%AD%A6%E7%BB%A9%E7%82%B9%E5%B0%8F%E5%8A%A9%E6%89%8B" target="_blank">东北大学绩点小助手</a>反馈</li>
+<li>如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确）</li>
+</ul>
+</li>
+<li>学业预警界面仍然支持绩点模拟。</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+<div id="vcomments"></div>
+<script src='https://download.xn--xhq44jb2fzpc.com/emoji/Valine.min.js'></script>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'OonCdS0gQbE87vABG6CBHlUZ-gzGzoHsz',  
+    appKey: 'ZGR19oiqCEV42iwm54KVpWrX', 
+    placeholder: '在这里发表评论...支持直接粘贴图片或者把图片文件拖拽进来，支持markdown语法。PS：评论区评论只能由网站管理员删除，请勿进行攻击性评论，多次违规者网站将永久禁止访问！',
+    lang: 'zh-cn',
+    meta: ['nick'],
+    recordIP: true,
+    requiredFields: ['nick'],
+    enableQQ: true,
+    emojiCDN: 'https://download.xn--xhq44jb2fzpc.com/emoji/tieba/',
+    emojiMaps: {
+      "haha": "haha.png",
+      "OK": "OK.png",
+      "what": "what.png",
+      "不高兴": "不高兴.png",
+      "乖": "乖.png",
+      "你懂的": "你懂的.png",
+      "便便": "便便.png",
+      "勉强": "勉强.png",
+      "吐": "吐.png",
+      "吐舌": "吐舌.png",
+      "呀咩爹": "呀咩爹.png",
+      "呵呵": "呵呵.png",
+      "哈哈": "哈哈.png",
+      "啊": "啊.png",
+      "喷": "喷.png",
+      "大拇指": "大拇指.png",
+      "太开心": "太开心.png",
+      "太阳": "太阳.png",
+      "委屈": "委屈.png",
+      "小乖": "小乖.png",
+      "小红脸": "小红脸.png",
+      "彩虹": "彩虹.png",
+      "心碎": "心碎.png",
+      "怒": "怒.png",
+      "惊哭": "惊哭.png",
+      "惊讶": "惊讶.png",
+      "懒得理": "懒得理.png",
+      "手纸": "手纸.png",
+      "挖鼻": "挖鼻.png",
+      "捂嘴笑": "捂嘴笑.png",
+      "星星月亮": "星星月亮.png",
+      "汗": "汗.png",
+      "沙发": "沙发.png",
+      "泪": "泪.png",
+      "滑稽": "滑稽.png",
+      "灯泡": "灯泡.png",
+      "爱心": "爱心.png",
+      "犀利": "犀利.png",
+      "狂汗": "狂汗.png",
+      "玫瑰": "玫瑰.png",
+      "疑问": "疑问.png",
+      "真棒": "真棒.png",
+      "睡觉": "睡觉.png",
+      "礼物": "礼物.png",
+      "笑尿": "笑尿.png",
+      "笑眼": "笑眼.png",
+      "红领巾": "红领巾.png",
+      "胜利": "胜利.png",
+      "花心": "花心.png",
+      "茶杯": "茶杯.png",
+      "药丸": "药丸.png",
+      "蛋糕": "蛋糕.png",
+      "蜡烛": "蜡烛.png",
+      "鄙视": "鄙视.png",
+      "酷": "酷.png",
+      "酸爽": "酸爽.png",
+      "钱币": "钱币.png",
+      "阴险": "阴险.png",
+      "音乐": "音乐.png",
+      "香蕉": "香蕉.png",
+      "黑线": "黑线.png"
+    }
+  });
+</script>
+
+
+
+      
+    </main>
+  </div>
+  <footer class="post-footer">
+    
+    <ul class="post-tags">
+      
+    </ul>
+    
+    
+  </footer>
+
+
+<script src="https://download.xn--xhq44jb2fzpc.com/upload/single.min.js"></script>
+
+<script>
+        
+        const email = "guo.yunzhe@outlook.com"; 
+
+        if (email) {
+            
+            updateAuthorInfo(email);
+            updateAvatar(email);
+            checkVerifiedStatus(email);
+            checkInvitedStatus(email);
+        } else {
+            console.log("Email parameter is missing.");
+        }
+</script>
+
+
+
+
+</article>
+</body>
+</html>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://xn--xhq44jb2fzpc.com/">NEU小站</a></span> · 
+        
+        <a href="/intro" target="_blank">
+            联系网站管理员
+        </a>
+        
+        
+        
+        <div>
+            <span style="white-space: nowrap;">
+                <img src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png" alt="公安标识" style="vertical-align: middle; height: 16px; display: inline-block;">
+                <a href="https://beian.mps.gov.cn/" target="_blank">
+                    赣公网安备36090202000259号</a>
+                &nbsp;|&nbsp;
+                <a href="https://beian.miit.gov.cn/" target="_blank">赣ICP备2024039267号-1</a>
+            </span>
+        </div>
+
+    
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+    
+<style>
+     
+     
+
+
+
+
+    </style>
+    
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var emberContainer = document.getElementById('ember-container');
+        emberContainer.addEventListener('mouseenter', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.remove('hidden');
+        });
+        emberContainer.addEventListener('mouseleave', function() {
+            var qrCode = document.getElementById('qr-code');
+            qrCode.classList.add('hidden');
+        });
+    });
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+</script>
+
+
+
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</body>
+
+</html>

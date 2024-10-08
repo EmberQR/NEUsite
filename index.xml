@@ -6,7 +6,7 @@
     <description>Recent content on NEU小站</description>
     <generator>Hugo -- 0.127.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 07 Oct 2024 22:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2024 10:53:26 +0800</lastBuildDate>
     <atom:link href="https://xn--xhq44jb2fzpc.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>宿舍规格</title>
@@ -37,6 +37,37 @@
 您的设备无法正常显示PDF文件。 点击此处下载。
 软件学院表格 此为软件学院认定表格，更新时间为2023年5月。
 您的设备无法正常显示PDF文件。 点击此处下载。</description>
+    </item>
+    <item>
+      <title>【马原毛概刷题软件】momofish软件安卓版</title>
+      <link>https://xn--xhq44jb2fzpc.com/resources/momofish/</link>
+      <pubDate>Tue, 08 Oct 2024 10:53:26 +0800</pubDate>
+      <guid>https://xn--xhq44jb2fzpc.com/resources/momofish/</guid>
+      <description> 标签：#马原 #毛概 #刷题 #题库 #APP #安卓 #安装包
+此处收录了马原毛概刷题软件momofish安卓版。此文件不支持预览，请手动下载。
+点击下载下载安全保护中3秒后将开始下载...</description>
+    </item>
+    <item>
+      <title>【机械学院保研】机械工程与自动化学院推荐 2021 级优秀应届本科毕业生免试攻读研究生工作实施细则</title>
+      <link>https://xn--xhq44jb2fzpc.com/strategy/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E9%99%A22021%E4%BF%9D%E7%A0%94/</link>
+      <pubDate>Tue, 08 Oct 2024 10:42:02 +0800</pubDate>
+      <guid>https://xn--xhq44jb2fzpc.com/strategy/%E6%9C%BA%E6%A2%B0%E5%AD%A6%E9%99%A22021%E4%BF%9D%E7%A0%94/</guid>
+      <description>标签：#机械学院 #机械工程与自动化学院 #保研 #推免 #竞赛 #特长 #创新 #竞赛保研
+温馨提示：手机可能无法正常预览PDF文件，请使用电脑进行在线预览。
+您的设备无法正常显示PDF文件。 点击此处下载。</description>
+    </item>
+    <item>
+      <title>【学业规划】绩点计算器插件推荐和使用指南</title>
+      <link>https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Tue, 08 Oct 2024 10:34:41 +0800</pubDate>
+      <guid>https://xn--xhq44jb2fzpc.com/strategy/%E7%BB%A9%E7%82%B9%E8%AE%A1%E7%AE%97%E5%99%A8%E6%8F%92%E4%BB%B6/</guid>
+      <description> 标签：#GPA #学业规划 #绩点计算器 #浏览器插件
+简介 你是否正在寻找一款可以帮助你提前预测GPA、规划学习的工具？ 作为一个免费的工具，我们可以提前预测接下来的课程可能对自己GPA的影响。 我们的脚本还特别设计了一个 “模拟绩点” 模式，让你自由添加和编辑预期的课程和成绩，以此来模拟不同学习策略下的GPA结果。 此外，我们的脚本还带有强大的筛选功能，让你可以按学年学期筛选课程。 你的所有数据和信息都只在你的本地浏览器中处理和保存，我们无法获取任何个人信息。你可以安心使用，无需担心隐私问题。 安装 在浏览器中安装 Tampermonkey 扩展程序： edge 用户请访问 edge 网上应用店搜索 &amp;ldquo;Tampermonkey&amp;rdquo;，然后点击 &amp;ldquo;添加至 edge&amp;rdquo; 安装。 Chrome 用户请访问 Google Chrome 网上应用店搜索 &amp;ldquo;Tampermonkey&amp;rdquo;，然后点击 &amp;ldquo;添加至 Chrome&amp;rdquo; 安装。 Firefox 用户请访问 Firefox 附加组件商店搜索 &amp;ldquo;Tampermonkey&amp;rdquo;，然后点击 &amp;ldquo;添加到 Firefox&amp;rdquo; 安装。 火狐浏览器支持安卓使用本脚本 安装脚本： 访问脚本页面：东北大学绩点小助手 点击页面的 &amp;ldquo;安装此脚本&amp;rdquo; 按钮。 使用脚本： 安装和配置完成后，脚本会在东北大学教务系统的页面中生效。 打开东北大学一网通办，webvpn，教务系统，即可看到右下方出现功能按钮，单击进去功能界面 功能介绍 快捷访问与绩点变动提醒 在 东北大学一网通办 和 东北大学webvpn 您可以通过右下角的悬浮窗快速进入绩点界面。
+进入界面后如果发生绩点变动会弹窗提醒
+新课绩点估计 在界面左上方输入新课学分，预估绩点，点击筛选/预测计算按钮，即可查看新课对绩点的影响。
+计算学年成绩 在界面左上方输入学年（如：2023-2024）或学期（如：2023-2024 秋季），点击筛选/预测计算按钮，即可查看被筛选的课程成绩。本界面的去除选修仅去除通识选修。
+绩点模拟计算 在界面右上方点击绩点模拟按钮，您可以任意更改界面上课程的学分、绩点或在下方添加新课程。点击绩点模拟计算按钮您就可以查看模拟绩点，完成后点击结束模拟恢复原界面。 结合筛选功能，并将不计入综测的课程删除，您可以计算综合测评的成绩
+学业预警界面 点击学业预警按钮可以进入学业预警界面。 如果发生转专业等变动，某一课程被替代，会弹窗让您输入课程的绩点学分，输入后弹窗提醒绩点计算错误，请仔细检查（主界面绩点和本界面绩点是否一致）。重新输入请点击左上角清除记录按键。 主界面绩点和本界面绩点一致时，弹窗提醒绩点计算错误，说明脚本计算绩点和教务系统绩点不一致，请手动计算。 如果是脚本bug可以进东北大学绩点小助手反馈 如果是教务系统错误请联系教务处处理（有先例，教务系统不一定正确） 学业预警界面仍然支持绩点模拟。 </description>
     </item>
     <item>
       <title>东北大学2025届(2024年)创新特长保研分析</title>
