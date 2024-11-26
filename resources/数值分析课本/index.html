@@ -501,87 +501,16 @@ let client;function getCookie(t){const n=t+"=";const o=document.cookie.split(";"
 <p><strong>温馨提示</strong>：手机端可能无法正常预览PDF文件。请使用电脑浏览器访问。</p>
 <div style="position:relative;padding-top:max(60%,324px);width:120%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/rpbgf/rmcb/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div>
 <hr>
-
-<div id="vcomments"></div>
-<script src='https://download.xn--xhq44jb2fzpc.com/emoji/Valine.min.js'></script>
+<div id="app">
+    <comment-plugin></comment-plugin>
+</div>
+<script src="https://download.xn--xhq44jb2fzpc.com/comment/vue@3.js"></script>
+<script src="https://download.xn--xhq44jb2fzpc.com/comment/comment.min.js"></script>
 <script>
-  new Valine({
-    el: '#vcomments',
-    appId: 'OonCdS0gQbE87vABG6CBHlUZ-gzGzoHsz',  
-    appKey: 'ZGR19oiqCEV42iwm54KVpWrX', 
-    placeholder: '在这里发表评论...支持直接粘贴图片或者把图片文件拖拽进来，支持markdown语法。PS：评论区评论只能由网站管理员删除，请勿进行攻击性评论，多次违规者网站将永久禁止访问！',
-    lang: 'zh-cn',
-    meta: ['nick'],
-    recordIP: true,
-    requiredFields: ['nick'],
-    enableQQ: true,
-    emojiCDN: 'https://download.xn--xhq44jb2fzpc.com/emoji/tieba/',
-    emojiMaps: {
-      "haha": "haha.png",
-      "OK": "OK.png",
-      "what": "what.png",
-      "不高兴": "不高兴.png",
-      "乖": "乖.png",
-      "你懂的": "你懂的.png",
-      "便便": "便便.png",
-      "勉强": "勉强.png",
-      "吐": "吐.png",
-      "吐舌": "吐舌.png",
-      "呀咩爹": "呀咩爹.png",
-      "呵呵": "呵呵.png",
-      "哈哈": "哈哈.png",
-      "啊": "啊.png",
-      "喷": "喷.png",
-      "大拇指": "大拇指.png",
-      "太开心": "太开心.png",
-      "太阳": "太阳.png",
-      "委屈": "委屈.png",
-      "小乖": "小乖.png",
-      "小红脸": "小红脸.png",
-      "彩虹": "彩虹.png",
-      "心碎": "心碎.png",
-      "怒": "怒.png",
-      "惊哭": "惊哭.png",
-      "惊讶": "惊讶.png",
-      "懒得理": "懒得理.png",
-      "手纸": "手纸.png",
-      "挖鼻": "挖鼻.png",
-      "捂嘴笑": "捂嘴笑.png",
-      "星星月亮": "星星月亮.png",
-      "汗": "汗.png",
-      "沙发": "沙发.png",
-      "泪": "泪.png",
-      "滑稽": "滑稽.png",
-      "灯泡": "灯泡.png",
-      "爱心": "爱心.png",
-      "犀利": "犀利.png",
-      "狂汗": "狂汗.png",
-      "玫瑰": "玫瑰.png",
-      "疑问": "疑问.png",
-      "真棒": "真棒.png",
-      "睡觉": "睡觉.png",
-      "礼物": "礼物.png",
-      "笑尿": "笑尿.png",
-      "笑眼": "笑眼.png",
-      "红领巾": "红领巾.png",
-      "胜利": "胜利.png",
-      "花心": "花心.png",
-      "茶杯": "茶杯.png",
-      "药丸": "药丸.png",
-      "蛋糕": "蛋糕.png",
-      "蜡烛": "蜡烛.png",
-      "鄙视": "鄙视.png",
-      "酷": "酷.png",
-      "酸爽": "酸爽.png",
-      "钱币": "钱币.png",
-      "阴险": "阴险.png",
-      "音乐": "音乐.png",
-      "香蕉": "香蕉.png",
-      "黑线": "黑线.png"
-    }
-  });
+    const app = Vue.createApp({});
+    app.use(CommentPlugin);
+    app.mount('#app');
 </script>
-
 
 
       
