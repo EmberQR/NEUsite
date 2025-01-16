@@ -288,12 +288,15 @@
 
     .tip {
         position: absolute;
-        bottom: 10px;
+        bottom: -5px;
         left: 50%;
         transform: translateX(-50%);
         font-size: 16px;
         color: #555;
         text-align: center;
+        padding: 0 10px; /* 可选：增加内边距，避免内容贴边 */
+        box-sizing: border-box; /* 确保 padding 不影响宽度计算 */
+        width: 100%;
     }
 
     /* 针对 verifybtn 按钮的样式 */
@@ -373,6 +376,20 @@
     .dark .tip {
         color: #aaa;
     }
+
+    @media (max-width: 768px) {
+    .title {
+        font-size: 19px;
+        margin-top: 80px; /* 根据导航栏高度调整 */
+        margin-bottom: 0px;
+    }
+
+    .tip {
+        font-size: 14px;
+        bottom: -20px;
+    }
+}
+
 
 
 </style>
